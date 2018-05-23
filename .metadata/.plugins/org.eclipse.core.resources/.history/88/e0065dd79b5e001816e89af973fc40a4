@@ -8,7 +8,7 @@
 		</id>
 		<property column="saldoMinimo" name="saldoMinimo" type="double"/>
 		
-		<set name="lectores" table="lector"  inverse="true" lazy="true" fetch="select">
+		<set name="lectores" table="lector" order-by="idlector asc" inverse="true" lazy="true" fetch="select">
 	<key column="idSaldoMinimo" not-null="true" />
 	<one-to-many class="datos.Lector" />
 		</set>

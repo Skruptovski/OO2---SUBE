@@ -20,11 +20,11 @@
 	<key column="idLectorTren"></key>
 	<property column="salida" name="salida" type="boolean"/>
 	<many-to-one name="estacion" class="datos.Estacion" column="idEstacion" not-null="true"/>
-	</joined-subclass>-->
+	</joined-subclass>
 	<joined-subclass name="datos.LectorSubte" table="lectorSubte">
 	<key column="idLectorSubte"></key>
 	<property column="estacionSubte" name="estacionSubte" type="string"/>
 	</joined-subclass>	
-		  
+		  -->
 	</class>
 </hibernate-mapping>

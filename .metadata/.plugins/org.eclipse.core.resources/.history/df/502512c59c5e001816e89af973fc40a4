@@ -24,6 +24,7 @@
 	<joined-subclass name="datos.LectorSubte" table="lectorSubte">
 	<key column="idLectorSubte"></key>
 	<property column="estacionSubte" name="estacionSubte" type="string"/>
+	<many-to-one name="linea" class="datos.Linea" column="idLinea" not-null="true"/>
 	</joined-subclass>	
 		  
 	</class>

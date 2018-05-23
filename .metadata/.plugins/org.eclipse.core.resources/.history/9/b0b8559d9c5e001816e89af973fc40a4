@@ -2,14 +2,14 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="datos.SaldoMinimo" table="saldoMinimo">
-		<id column="idSaldoMinimo" name="idSaldoMinimo">
+	<class name="datos.Linea" table="linea">
+		<id column="idLinea" name="idLinea">
 			<generator class="identity"/>
 		</id>
-		<property column="saldoMinimo" name="saldoMinimo" type="double"/>
+		<property column="linea" name="linea" type="string"/>
 		
-		<set name="lectores" table="lector"  inverse="true" lazy="true" fetch="select">
-	<key column="idSaldoMinimo" not-null="true" />
+		<set name="lectores" table="lector" order-by="idLector asc" inverse="true" lazy="true" fetch="select">
+	<key column="idLinea" not-null="true" />
 	<one-to-many class="datos.Lector" />
 		</set>
 	</class>

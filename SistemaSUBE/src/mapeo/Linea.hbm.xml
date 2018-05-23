@@ -8,9 +8,10 @@
 		</id>
 		<property column="linea" name="linea" type="string"/>
 		
-		<set name="lectores" table="lector" order-by="idlector asc" inverse="true" lazy="true" fetch="select">
+		<set name="lectores" table="lector" inverse="true" lazy="true" fetch="select">
 	<key column="idLinea" not-null="true" />
 	<one-to-many class="datos.Lector" />
 		</set>
+		
 	</class>
 </hibernate-mapping>
