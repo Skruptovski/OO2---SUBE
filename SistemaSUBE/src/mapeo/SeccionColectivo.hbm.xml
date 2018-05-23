@@ -12,5 +12,11 @@
 			<key column="idSeccionColectivo" not-null="true" />
 			<one-to-many class="datos.TramoColectivo" />
 		</set>
+		
+		<set table = "tramoColectivo" name = "lectorColectivo" outer-join = "true" >
+			<key column = "idSeccionColectivo" />
+			<many-to-many column = "idLectorColectivo" class = "datos.LectorColectivo" />
+		</set>
+		
 	</class>
 </hibernate-mapping>
