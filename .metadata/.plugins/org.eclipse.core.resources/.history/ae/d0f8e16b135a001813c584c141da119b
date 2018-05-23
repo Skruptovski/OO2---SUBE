@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Lector" table="lector">
+		<id column="idLector" name="idLector">
+			<generator class="identity"/>
+		</id>
+		<set name="boletos" table="boleto" order-by="idBoleto asc" inverse="true" lazy="true" fetch="select">
+	<key column="idLector" not-null="true" />
+	<one-to-many class="datos.Boleto" />
+		</set>
+		
+		<joined-subclass name="datos.TarifaSocial" table="tarifaSocial">
+	<key column="idTarifaSocial"></key>
+	<property column="porcentajeDescuento" name="porcentajeDescuento" type="double"/>
+	</joined-subclass>
+	<joined-subclass name="datos.BoletoEstudiantil" table="boletoEstudiantil">
+	<key column="idBoletoEstudiantil"></key>
+	<property column="monto" name="monto" type="double"/>
+	</joined-subclass>
+	</class>
+</hibernate-mapping>

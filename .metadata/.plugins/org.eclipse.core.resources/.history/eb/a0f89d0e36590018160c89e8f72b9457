@@ -1,0 +1,73 @@
+package datos;
+
+import java.util.*;
+
+public class Tarjeta {
+	
+	private long idTarjeta;
+	private Usuario usuario;
+	private double saldo=0;
+	private boolean redSUBE=false;
+	private int nivelRS;
+	private boolean baja;
+	private Set<Boleto> boletos;
+	
+	public Tarjeta() {
+		super();
+	}
+
+	public long getIdTarjeta() {
+		return idTarjeta;
+	}
+
+	protected void setIdTarjeta(long idTarjeta) {
+		this.idTarjeta = idTarjeta;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
+	public boolean isRedSUBE() {
+		return redSUBE;
+	}
+
+	public void setRedSUBE(boolean redSUBE) {
+		this.redSUBE = redSUBE;
+	}
+
+	public int getNivelRS() {
+		return nivelRS;
+	}
+
+	public void setNivelRS(int nivelRS) {
+		this.nivelRS = nivelRS;
+	}
+
+	public Set<Boleto> getBoletos() {
+		return boletos;
+	}
+
+	public void setBoletos(Set<Boleto> boletos) {
+		this.boletos = boletos;
+	}
+
+	@Override
+	public String toString() {
+		return "Tarjeta [idTarjeta=" + idTarjeta + ", usuario=" + usuario + ", saldo=" + saldo + ", redSUBE=" + redSUBE
+				+ ", nivelRS=" + nivelRS + "]";
+	}
+
+}

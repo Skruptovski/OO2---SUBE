@@ -1,0 +1,51 @@
+package datos;
+
+import java.util.Set;
+
+public class Estacion {
+	private long idEstacion;
+	private String estacion;
+	private Set<Tramo> estacion1;
+	private Set<Tramo> estacion2;
+	
+	public Estacion() {}
+	
+	public Estacion(String estacion) {
+		this.estacion = estacion;
+	}
+
+	public long getIdEstacion() {
+		return idEstacion;
+	}
+
+	protected void setIdEstacion(long idEstacion) {
+		this.idEstacion = idEstacion;
+	}
+
+	public String getEstacion() {
+		return estacion;
+	}
+
+	public void setEstacion(String estacion) {
+		this.estacion = estacion;
+	}
+
+	public Set<Tramo> getEstacion1() {
+		return estacion1;
+	}
+
+	public void setEstacion1(Set<Tramo> estacion1) {
+		this.estacion1 = estacion1;
+	}
+
+	public Set<Tramo> getEstacion2() {
+		return estacion2;
+	}
+
+	public void setEstacion2(Set<Tramo> estacion2) {
+		this.estacion2 = estacion2;
+	}
+	
+	
+
+}

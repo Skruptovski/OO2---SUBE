@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="negocio.TarifaSocialABM"/>
+<fullyQualifiedTypeName name="datos.Beneficio"/>
+<fullyQualifiedTypeName name="negocio.BeneficioABM"/>
+<fullyQualifiedTypeName name="dao.TarjetaDao"/>
+<fullyQualifiedTypeName name="datos.Tarjeta"/>
+<fullyQualifiedTypeName name="negocio.TarjetaABM"/>
+<fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
+<fullyQualifiedTypeName name="dao.LineaDao"/>
+<fullyQualifiedTypeName name="dao.LectorDao"/>
+<fullyQualifiedTypeName name="dao.SaldoMinimoDao"/>
+<fullyQualifiedTypeName name="datos.SaldoMinimo"/>
+<fullyQualifiedTypeName name="negocio.LineaABM"/>
+<fullyQualifiedTypeName name="datos.Linea"/>
+<fullyQualifiedTypeName name="negocio.LectorABM"/>
+<fullyQualifiedTypeName name="datos.Lector"/>
+<fullyQualifiedTypeName name="negocio.SaldoMinimoABM"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+</qualifiedTypeNameHistroy>

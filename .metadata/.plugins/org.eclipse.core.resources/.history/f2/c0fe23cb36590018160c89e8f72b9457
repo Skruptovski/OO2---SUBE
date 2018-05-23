@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="datos.Tarjeta" table="tarjeta">
+		<id column="idTarjeta" name="idTarjeta">
+			<generator class="identity"/>
+		</id>
+		<property column="saldo" name="saldo" type="double"/>
+		<property column="redSUBE" name="redSUBE" type="boolean"/>
+		<property column="nivelRS" name="nivelRS" type="int"/>
+		<property column="baja" name="baja" type="boolean"/>
+		
+		<set name="usuarios" table="usuario" order-by="idUsuario asc" inverse="true" lazy="true" fetch="select">
+	<key column="idBeneficio" not-null="false" />
+	<one-to-many class="datos.Usuario" />
+		</set>
+	</class>
+</hibernate-mapping>

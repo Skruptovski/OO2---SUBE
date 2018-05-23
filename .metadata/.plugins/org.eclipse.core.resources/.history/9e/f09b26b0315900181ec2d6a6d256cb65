@@ -1,0 +1,14 @@
+package test;
+import datos.Usuario;
+import negocio.TarifaSocialABM;
+import negocio.UsuarioABM;
+
+public class TestAgregarTarifaSocial {
+	public static void main(String[] args) throws Exception {
+		String beneficio= "Plan Progresar" ;
+		double porcentajeDescuento = 0.45;
+		TarifaSocialABM dabm = TarifaSocialABM.getInstanciaDescuentoABM();
+		dabm.agregar(beneficio,porcentajeDescuento);
+
+	}
+}

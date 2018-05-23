@@ -1,0 +1,12 @@
+package test;
+import negocio.UsuarioABM;
+
+public class TestAgregarUsuario {
+	public static void main(String[] args) throws Exception {
+		String apellido= "Dior" ;
+		String nombre= "Axel" ;
+		int documento=33111111;
+		UsuarioABM abm= UsuarioABM.getInstanciaUsuarioABM();
+		abm.agregar(apellido, nombre, documento,null);
+	}
+}

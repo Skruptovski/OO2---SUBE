@@ -1,0 +1,31 @@
+package datos;
+
+public class Estacion {
+	private long idEstacion;
+	private String estacion;
+	
+	public Estacion() {}
+	
+	public Estacion(String estacion) {
+		this.estacion = estacion;
+	}
+
+	public long getIdEstacion() {
+		return idEstacion;
+	}
+
+	protected void setIdEstacion(long idEstacion) {
+		this.idEstacion = idEstacion;
+	}
+
+	public String getEstacion() {
+		return estacion;
+	}
+
+	public void setEstacion(String estacion) {
+		this.estacion = estacion;
+	}
+	
+	
+
+}
