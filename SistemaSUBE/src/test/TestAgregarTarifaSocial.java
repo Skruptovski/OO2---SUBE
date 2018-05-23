@@ -7,6 +7,6 @@ public class TestAgregarTarifaSocial {
 		double porcentajeDescuento = 0.45;
 		TarifaSocialABM tabm = TarifaSocialABM.getInstanciaTarifaSocialABM();
 		tabm.agregar(beneficio,porcentajeDescuento);
-
+		System.out.println("Cargado Existosamente");
 	}
 }

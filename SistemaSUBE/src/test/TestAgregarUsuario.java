@@ -12,5 +12,6 @@ public class TestAgregarUsuario {
 		BeneficioABM tabm = BeneficioABM.getInstanciaBeneficioABM();
 		Beneficio beneficio = tabm.traer(2);
 		abm.agregar(apellido, nombre, documento,beneficio);
+		System.out.println("Cargado Existosamente");
 	}
 }

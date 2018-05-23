@@ -13,6 +13,6 @@ public class TestAgregarTarjeta {
 		GregorianCalendar inicioRS = new GregorianCalendar();
 		TarjetaABM abm = TarjetaABM.getInstanciaTarjetaABM();
 		abm.agregar(saldo, redSUBE, nivelRS,inicioRS, baja);
-
+		System.out.println("Cargado Existosamente");
 	}
 }

@@ -13,6 +13,6 @@ public class TestAgregarLector {
 		Linea linea = LineaABM.getInstanciaLineaABM().traer(1);
 		LectorABM abm= LectorABM.getInstanciaLectorABM();
 		abm.agregar(linea, saldoMinimo, tipoLector);
-	
+		System.out.println("Cargado Existosamente");
 	}
 }
