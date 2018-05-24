@@ -28,15 +28,17 @@
 		<property column="estacionSubte" name="estacionSubte" type="string"/>
 	</joined-subclass>
 	
+	<!--
 	<joined-subclass name="datos.LectorColectivo" table="lectorColectivo">
 		<key column="idLectorColectivo"></key>
 		<property column="interno" name="interno" type="string"/>
-		<set table = "tramoColectivo" name = "seccionColectivo" outer-join = "true" >
+		 <set table = "tramoColectivo" name = "seccionColectivo" outer-join = "true" >
 			<key column = "idLectorColectivo" />
 			<many-to-many column = "idSeccionColectivo" class = "datos.SeccionColectivos" />
 		</set>
-
+		
 	</joined-subclass>
+	-->
 		 
 	</class>
 </hibernate-mapping>
