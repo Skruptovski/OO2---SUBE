@@ -8,19 +8,10 @@
 		</id>
 		<property column="tarifa" name="tarifa" type="double"/>
 		
-		<set name="usuarios" table="usuario" order-by="idUsuario asc" inverse="true" lazy="true" fetch="select">
-			<key column="idBeneficio" not-null="false" />
-			<one-to-many class="datos.Usuario" />
-		</set>
+		<set table = "lector_boton" name = "lectorColectivo" outer-join = "true" >
+			<key column = "idBotonColectiivo" />
+			<many-to-many column = "idLectorColectivo" class = "datos.LectorColectivo" />
+		</set >
 		
-	<joined-subclass name="datos.TarifaSocial" table="tarifaSocial">
-	<key column="idTarifaSocial"></key>
-	<property column="porcentajeDescuento" name="porcentajeDescuento" type="double"/>
-	</joined-subclass>
-	
-	<joined-subclass name="datos.BoletoEstudiantil" table="boletoEstudiantil">
-	<key column="idBoletoEstudiantil"></key>
-	<property column="monto" name="monto" type="double"/>
-	</joined-subclass>
 	</class>
 </hibernate-mapping>
