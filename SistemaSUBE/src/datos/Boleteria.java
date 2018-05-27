@@ -6,7 +6,7 @@ public class Boleteria {
 	
 	public Boleteria (){}
 
-	public Boleteria(long idBoleteria, String boleteria) {
+	public Boleteria(String boleteria) {
 		super();
 		this.idBoleteria = idBoleteria;
 		this.boleteria = boleteria;

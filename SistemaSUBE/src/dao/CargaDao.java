@@ -5,21 +5,18 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import datos.TarifaSocial;
-import datos.TramoTren;
-import datos.BoletoEstudiantil;
-import datos.LectorTren;
+import datos.Carga;
 
-public class TramoTrenDao {
+public class CargaDao {
 	private static Session session ;
 	private Transaction tx ;
-	private static TramoTrenDao instanciaTramoTrenDao;
+	private static CargaDao instanciaCargaDao;
 	
-	public static TramoTrenDao getInstanciaTramoTrenDao() {
-		if ( instanciaTramoTrenDao == null ) {
-			instanciaTramoTrenDao = new TramoTrenDao();
+	public static CargaDao getInstanciaCargaDao() {
+		if ( instanciaCargaDao == null ) {
+			instanciaCargaDao = new CargaDao();
 		}
-		return instanciaTramoTrenDao ;
+		return instanciaCargaDao;
 		}
 	private void iniciaOperacion() throws HibernateException {
 		session = HibernateUtil. getSessionFactory ().openSession();
@@ -31,7 +28,7 @@ public class TramoTrenDao {
 		throw new HibernateException( "ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregar(TramoTren objeto) {int id = 0;
+	public int agregar(Carga objeto) {int id = 0;
 		try {
 			iniciaOperacion();
 			id = Integer. parseInt ( session .save(objeto).toString());
@@ -45,7 +42,7 @@ public class TramoTrenDao {
 		return id;
 	}
 	
-	public void actualizar(TramoTren objeto) throws HibernateException {
+	public void actualizar(Carga objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session .update(objeto);
@@ -58,7 +55,7 @@ public class TramoTrenDao {
 			}
 		}
 				
-	public void eliminar(TramoTren objeto) throws HibernateException {
+	public void eliminar(Carga objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session .delete(objeto);
@@ -71,11 +68,11 @@ public class TramoTrenDao {
 		}
 	}
 		
-	public TramoTren traer( long id) throws HibernateException {
-		TramoTren objeto = null ;
+	public Carga traer( long id) throws HibernateException {
+		Carga objeto = null ;
 		try {
 			iniciaOperacion();
-			objeto = (TramoTren) session .get(TramoTren. class , id);
+			objeto = (Carga) session .get(Carga. class , id);
 		} finally {
 			session .close();
 		}
@@ -83,14 +80,15 @@ public class TramoTrenDao {
 	}
 	
 	@SuppressWarnings ( "unchecked" )
-	public List<TramoTren> traer() throws HibernateException {
-		List<TramoTren> lista= null ;
+	public List<Carga> traer() throws HibernateException {
+		List<Carga> lista= null ;
 		try {
 			iniciaOperacion();
-			lista= session .createQuery( "from TramoTren" ).list();
+			lista= session .createQuery( "from Carga" ).list();
 		} finally {
 			session .close();
 		}
 		return lista;
 	}
 }
+	

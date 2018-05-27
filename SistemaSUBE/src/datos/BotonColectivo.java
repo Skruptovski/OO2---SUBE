@@ -6,9 +6,8 @@ public class BotonColectivo {
 	
 	public BotonColectivo (){}
 
-	public BotonColectivo(long idBoton, double tarifa) {
+	public BotonColectivo(double tarifa) {
 		super();
-		this.idBotonColectivo = idBotonColectivo;
 		this.tarifa = tarifa;
 	}
 

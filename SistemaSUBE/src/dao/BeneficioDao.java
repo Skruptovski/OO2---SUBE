@@ -18,6 +18,7 @@ public class BeneficioDao {
 		}
 		return instanciaBeneficioDao ;
 		}
+	
 	private void iniciaOperacion() throws HibernateException {
 		session = HibernateUtil. getSessionFactory ().openSession();
 		tx = session .beginTransaction();

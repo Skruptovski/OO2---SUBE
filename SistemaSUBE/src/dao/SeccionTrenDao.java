@@ -15,7 +15,7 @@ public class SeccionTrenDao {
 	private Transaction tx ;
 	private static SeccionTrenDao instanciaSeccionTrenDao;
 	
-	public static SeccionTrenDao getInstanciaLectorTrenDao() {
+	public static SeccionTrenDao getInstanciaSeccionTrenDao() {
 		if ( instanciaSeccionTrenDao == null ) {
 			instanciaSeccionTrenDao = new SeccionTrenDao();
 		}

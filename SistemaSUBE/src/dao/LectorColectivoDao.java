@@ -6,20 +6,19 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.TarifaSocial;
-import datos.TramoTren;
 import datos.BoletoEstudiantil;
-import datos.LectorTren;
+import datos.LectorColectivo;
 
-public class TramoTrenDao {
+public class LectorColectivoDao {
 	private static Session session ;
 	private Transaction tx ;
-	private static TramoTrenDao instanciaTramoTrenDao;
+	private static LectorColectivoDao instanciaLectorColectivoDao;
 	
-	public static TramoTrenDao getInstanciaTramoTrenDao() {
-		if ( instanciaTramoTrenDao == null ) {
-			instanciaTramoTrenDao = new TramoTrenDao();
+	public static LectorColectivoDao getInstanciaLectorColectivoDao() {
+		if ( instanciaLectorColectivoDao == null ) {
+			instanciaLectorColectivoDao = new LectorColectivoDao();
 		}
-		return instanciaTramoTrenDao ;
+		return instanciaLectorColectivoDao ;
 		}
 	private void iniciaOperacion() throws HibernateException {
 		session = HibernateUtil. getSessionFactory ().openSession();
@@ -31,7 +30,7 @@ public class TramoTrenDao {
 		throw new HibernateException( "ERROR en la capa de acceso a datos" , he);
 	}
 	
-	public int agregar(TramoTren objeto) {int id = 0;
+	public int agregar(LectorColectivo objeto) {int id = 0;
 		try {
 			iniciaOperacion();
 			id = Integer. parseInt ( session .save(objeto).toString());
@@ -45,7 +44,7 @@ public class TramoTrenDao {
 		return id;
 	}
 	
-	public void actualizar(TramoTren objeto) throws HibernateException {
+	public void actualizar(LectorColectivo objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session .update(objeto);
@@ -58,7 +57,7 @@ public class TramoTrenDao {
 			}
 		}
 				
-	public void eliminar(TramoTren objeto) throws HibernateException {
+	public void eliminar(LectorColectivo objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session .delete(objeto);
@@ -71,11 +70,11 @@ public class TramoTrenDao {
 		}
 	}
 		
-	public TramoTren traer( long id) throws HibernateException {
-		TramoTren objeto = null ;
+	public LectorColectivo traer( long id) throws HibernateException {
+		LectorColectivo objeto = null ;
 		try {
 			iniciaOperacion();
-			objeto = (TramoTren) session .get(TramoTren. class , id);
+			objeto = (LectorColectivo) session .get(LectorColectivo. class , id);
 		} finally {
 			session .close();
 		}
@@ -83,11 +82,11 @@ public class TramoTrenDao {
 	}
 	
 	@SuppressWarnings ( "unchecked" )
-	public List<TramoTren> traer() throws HibernateException {
-		List<TramoTren> lista= null ;
+	public List<LectorColectivo> traer() throws HibernateException {
+		List<LectorColectivo> lista= null ;
 		try {
 			iniciaOperacion();
-			lista= session .createQuery( "from TramoTren" ).list();
+			lista= session .createQuery( "from LectorColectivo" ).list();
 		} finally {
 			session .close();
 		}
