@@ -12,7 +12,7 @@ public class TestAgregarTarjeta {
 		boolean baja = false;
 		GregorianCalendar inicioRS = new GregorianCalendar();
 		TarjetaABM abm = TarjetaABM.getInstanciaTarjetaABM();
-		abm.agregar(saldo, redSUBE, nivelRS,inicioRS, baja);
-
+		abm.agregar(saldo, redSUBE, nivelRS,inicioRS, baja,null);
+		System.out.println("Cargado Exitosamente");
 	}
 }

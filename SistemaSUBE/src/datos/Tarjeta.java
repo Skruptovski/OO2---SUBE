@@ -11,16 +11,19 @@ public class Tarjeta {
 	private GregorianCalendar inicioRS;
 	private boolean baja;
 	private Set<Boleto> boletos;
+	private Set<Carga> cargas;
+	private Usuario usuario;
 	
 	public Tarjeta() {}
 
-	public Tarjeta(double saldo, boolean redSUBE, int nivelRS,GregorianCalendar inicioRS, boolean baja) {
+	public Tarjeta(double saldo, boolean redSUBE, int nivelRS,GregorianCalendar inicioRS, boolean baja,Usuario usuario) {
 		super();
 		this.saldo = saldo;
 		this.redSUBE = redSUBE;
 		this.nivelRS = nivelRS;
 		this.inicioRS = inicioRS;
 		this.baja = baja;
+		this.usuario = usuario;
 	}
 
 	public long getIdTarjeta() {
@@ -77,6 +80,23 @@ public class Tarjeta {
 
 	public void setBoletos(Set<Boleto> boletos) {
 		this.boletos = boletos;
+	}
+
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Set<Carga> getCargas() {
+		return cargas;
+	}
+
+	public void setCargas(Set<Carga> cargas) {
+		this.cargas = cargas;
 	}
 
 	@Override

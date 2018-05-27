@@ -25,8 +25,8 @@ public class LectorColectivoABM {
 		else return c;
 	}
 
-	public int agregar(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String interno, int estado, Set<BotonColectivo> botonesColectivos){
-		LectorColectivo c= new LectorColectivo(linea, saldoMinimo, tipoLector, interno, estado, botonesColectivos);
+	public int agregar(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String interno, int estado){
+		LectorColectivo c= new LectorColectivo(linea, saldoMinimo, tipoLector, interno, estado);
 			return dao .agregar(c);
 	}
 	

@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.TarjetaDao;
 import datos.Tarjeta;
+import datos.Usuario;
 
 public class TarjetaABM {
 	private static TarjetaABM instanciaTarjetaABM;
@@ -22,8 +23,8 @@ public class TarjetaABM {
 		else return c;
 	}
 
-	public int agregar(double saldo, boolean redSUBE, int nivelRS,GregorianCalendar inicioRS, boolean baja){
-		Tarjeta c= new Tarjeta(saldo,redSUBE,nivelRS,inicioRS,baja);
+	public int agregar(double saldo, boolean redSUBE, int nivelRS,GregorianCalendar inicioRS, boolean baja,Usuario usuario){
+		Tarjeta c= new Tarjeta(saldo,redSUBE,nivelRS,inicioRS,baja,usuario);
 			return dao .agregar(c);
 	}
 	

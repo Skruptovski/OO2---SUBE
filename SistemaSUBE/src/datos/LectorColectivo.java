@@ -6,15 +6,14 @@ public class LectorColectivo extends Lector {
 	private long idLectorColectivo;
 	private String interno;
 	private int estado;
-	private Set<BotonColectivo> botonesColectivos;
+	private Set<BotonColectivo> botonesColectivo;
 	
 	public LectorColectivo (){}
 
-	public LectorColectivo(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String interno, int estado, Set<BotonColectivo> botonesColectivos) {
+	public LectorColectivo(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String interno, int estado) {
 		super(linea, saldoMinimo, tipoLector);
 		this.interno = interno;
 		this.estado = estado;
-		this.botonesColectivos = botonesColectivos;
 	}
 
 	public long getIdLectorColectivo() {
@@ -41,12 +40,12 @@ public class LectorColectivo extends Lector {
 		this.estado = estado;
 	}
 
-	public Set<BotonColectivo> getBotonesColectivos() {
-		return botonesColectivos;
+	public Set<BotonColectivo> getBotonesColectivo() {
+		return botonesColectivo;
 	}
 
-	public void setBotones(Set<BotonColectivo> botonesColectivos) {
-		this.botonesColectivos = botonesColectivos;
+	public void setBotonesColectivo(Set<BotonColectivo> botonesColectivo) {
+		this.botonesColectivo = botonesColectivo;
 	}
 
 	@Override

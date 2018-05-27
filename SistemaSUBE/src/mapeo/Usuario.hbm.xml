@@ -10,6 +10,11 @@
 		<property column="nombre" name="nombre" type="string"/>
 		<property column="dni" name="dni" type="int"/>
 		
+		<set name="tarjetas" table="tarjeta" order-by="idTarjeta asc" inverse="true" lazy="true" fetch="select">
+			<key column="idUsuario" not-null="false" />
+			<one-to-many class="datos.Tarjeta" />
+		</set>
+		
 	<many-to-one name="beneficio" class="datos.Beneficio" column="idBeneficio" not-null="false"/>
 	</class>
 </hibernate-mapping>

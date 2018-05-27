@@ -7,6 +7,6 @@ public class TestAgregarSaldoMinimo {
 		double saldoMinimo = -20;
 		SaldoMinimoABM abm = SaldoMinimoABM.getInstanciaSaldoMinimoABM();
 		abm.agregar(saldoMinimo);
-
+		System.out.println("Cargado Exitosamente");
 	}
 }

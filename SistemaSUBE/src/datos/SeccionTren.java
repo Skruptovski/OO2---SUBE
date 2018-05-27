@@ -20,7 +20,7 @@ public class SeccionTren {
 		return idSeccionTren;
 	}
 
-	public void setIdSeccionTren(long idSeccionTren) {
+	protected void setIdSeccionTren(long idSeccionTren) {
 		this.idSeccionTren = idSeccionTren;
 	}
 

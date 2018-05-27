@@ -1,14 +1,17 @@
 package datos;
 
+import java.util.Set;
+
 public class BotonColectivo {
 	private long idBotonColectivo;
-	private double tarifa;
+	private double precioSeccionColectivo;
+	private Set<LectorColectivo> lectoresColectivo;
 	
 	public BotonColectivo (){}
 
 	public BotonColectivo(double tarifa) {
 		super();
-		this.tarifa = tarifa;
+		this.precioSeccionColectivo = tarifa;
 	}
 
 	public long getIdBotonColectivo() {
@@ -19,17 +22,25 @@ public class BotonColectivo {
 		this.idBotonColectivo = idBoton;
 	}
 
-	public double getTarifa() {
-		return tarifa;
+	public double getPrecioSeccionColectivo() {
+		return precioSeccionColectivo;
 	}
 
-	public void setTarifa(double tarifa) {
-		this.tarifa = tarifa;
+	public void setPrecioSeccionColectivo(double precioSeccionColectivo) {
+		this.precioSeccionColectivo = precioSeccionColectivo;
+	}
+
+	public Set<LectorColectivo> getLectoresColectivo() {
+		return lectoresColectivo;
+	}
+
+	public void setLectoresColectivo(Set<LectorColectivo> lectoresColectivo) {
+		this.lectoresColectivo = lectoresColectivo;
 	}
 
 	@Override
 	public String toString() {
-		return "Boton [idBotonColectivo=" + idBotonColectivo + ", tarifa=" + tarifa + "]";
+		return "Boton [idBotonColectivo=" + idBotonColectivo + ", tarifa=" + precioSeccionColectivo + "]";
 	}
 	
 	

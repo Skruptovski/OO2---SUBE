@@ -8,6 +8,6 @@ public class TestAgregarBoletoEstudiantil {
 		double montoFijo = 300;
 		BoletoEstudiantilABM dabm = BoletoEstudiantilABM.getInstanciaBoletoEstudiantilABM();
 		dabm.agregar(beneficio,montoFijo);
-
+		System.out.println("Cargado Exitosamente");
 	}
 }

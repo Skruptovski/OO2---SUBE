@@ -6,15 +6,15 @@
 		<id column="idEstacion" name="idEstacion">
 			<generator class="identity"/>
 		</id>
-		<property column="estacion" name="estacion" type="String"/>
+		<property column="estacion" name="estacion" type="string"/>
 		
 		
-		<set name="lectoresTren" table="lectorTren" order-by="idLectorTren asc" inverse="true" lazy="true" fetch="select">
+		<set name="lectoresTren" table="lectorTren"  inverse="true" lazy="true" fetch="select">
 			<key column="idEstacion" not-null="true" />
 			<one-to-many class="datos.LectorTren" />
 		</set>
 		
-		<set name="estacion1" table="tramoTren"  order-by="idTramoTren asc" inverse="true" lazy="true" fetch="select">
+	 	<set name="estacion1" table="tramoTren"  order-by="idTramoTren asc" inverse="true" lazy="true" fetch="select">
 			<key column="idEstacion" not-null="true" />
 			<one-to-many class="datos.TramoTren" />
 		</set>
@@ -22,7 +22,7 @@
 		<set name="estacion2" table="tramoTren" order-by="idTramoTren asc" inverse="true" lazy="true" fetch="select">
 			<key column="idEstacion" not-null="true" />
 			<one-to-many class="datos.TramoTren" />
-		</set>
+		</set> 
 		
 	</class>
 </hibernate-mapping>

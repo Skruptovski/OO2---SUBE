@@ -10,7 +10,8 @@ public class TestAgregarUsuario {
 		int documento=36111111;
 		UsuarioABM abm= UsuarioABM.getInstanciaUsuarioABM();
 		BeneficioABM tabm = BeneficioABM.getInstanciaBeneficioABM();
-		Beneficio beneficio = tabm.traer(2);
+		Beneficio beneficio = tabm.traer(1);
 		abm.agregar(apellido, nombre, documento,beneficio);
+		System.out.println("Cargado Exitosamente");
 	}
 }

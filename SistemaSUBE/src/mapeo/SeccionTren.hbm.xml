@@ -6,16 +6,14 @@
 		<id column="idSeccionTren" name="idSeccionTren">
 			<generator class="identity"/>
 		</id>
-		<property column="seccion" name="seccion" type="String"/>
+		<property column="seccion" name="seccion" type="char"/>
 		<property column="precio" name="precio" type="double"/>
 		
 		
-		<set name="tramosTren" table="tramoTren" order-by="idTramoTren asc" inverse="true" lazy="true" fetch="select">
+		<set name="tramos" table="tramoTren" order-by="idTramoTren asc" inverse="true" lazy="true" fetch="select">
 			<key column="idSeccionTren" not-null="true" />
 			<one-to-many class="datos.TramoTren" />
 		</set>
-		
-		
 		
 	</class>
 </hibernate-mapping>

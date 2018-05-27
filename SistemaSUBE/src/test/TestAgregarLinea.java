@@ -7,6 +7,6 @@ public class TestAgregarLinea {
 		String linea = "San Vicente";
 		LineaABM abm = LineaABM.getInstanciaLineaABM();
 		abm.agregar(linea);
-
+		System.out.println("Cargado Exitosamente");
 	}
 }

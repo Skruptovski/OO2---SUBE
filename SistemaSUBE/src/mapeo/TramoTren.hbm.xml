@@ -7,9 +7,9 @@
 			<generator class="identity"/>
 		</id>
 		
-		<many-to-one name="estacion1" class="datos.Estacion" column="idEstacion" not-null="true"/>
+		<many-to-one name="estacion1" class="datos.Estacion" column="idEstacion1" not-null="true"/>
 		
-		<many-to-one name="estacion2" class="datos.Estacion" column="idEstacion" not-null="true"/>
+		<many-to-one name="estacion2" class="datos.Estacion" column="idEstacion2" not-null="true"/>
 		
 		<many-to-one name="seccionTren" class="datos.SeccionTren" column="idSeccionTren" not-null="true"/>
 		

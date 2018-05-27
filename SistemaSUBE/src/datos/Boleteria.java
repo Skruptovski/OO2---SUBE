@@ -1,14 +1,15 @@
 package datos;
 
+import java.util.Set;
+
 public class Boleteria {
 	private long idBoleteria;
 	private String boleteria;
+	private Set<Carga> cargas;
 	
 	public Boleteria (){}
 
 	public Boleteria(String boleteria) {
-		super();
-		this.idBoleteria = idBoleteria;
 		this.boleteria = boleteria;
 	}
 
@@ -26,6 +27,15 @@ public class Boleteria {
 
 	public void setBoleteria(String boleteria) {
 		this.boleteria = boleteria;
+	}
+
+	
+	public Set<Carga> getCargas() {
+		return cargas;
+	}
+
+	public void setCargas(Set<Carga> cargas) {
+		this.cargas = cargas;
 	}
 
 	@Override
