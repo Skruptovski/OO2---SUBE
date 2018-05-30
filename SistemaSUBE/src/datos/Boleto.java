@@ -19,6 +19,27 @@ public class Boleto {
 		this.montoConDescuento = montoConDescuento;
 		this.fechaHoraBoleto = fechaHoraBoleto;
 	}
+	public Boleto(Tarjeta tarjeta,LectorTren lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto) {
+		this.tarjeta = tarjeta;
+		this.lector = lector;
+		this.monto = monto;
+		this.montoConDescuento = montoConDescuento;
+		this.fechaHoraBoleto = fechaHoraBoleto;
+	}
+	public Boleto(Tarjeta tarjeta,LectorSubte lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto) {
+		this.tarjeta = tarjeta;
+		this.lector = lector;
+		this.monto = monto;
+		this.montoConDescuento = montoConDescuento;
+		this.fechaHoraBoleto = fechaHoraBoleto;
+	}
+	public Boleto(Tarjeta tarjeta,LectorColectivo lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto) {
+		this.tarjeta = tarjeta;
+		this.lector = lector;
+		this.monto = monto;
+		this.montoConDescuento = montoConDescuento;
+		this.fechaHoraBoleto = fechaHoraBoleto;
+	}
 
 	public long getIdBoleto() {
 		return idBoleto;
