@@ -14,7 +14,8 @@
 <fullyQualifiedTypeName name="negocio.LineaABM"/>
 <fullyQualifiedTypeName name="datos.Linea"/>
 <fullyQualifiedTypeName name="negocio.LectorABM"/>
-<fullyQualifiedTypeName name="datos.Lector"/>
 <fullyQualifiedTypeName name="negocio.SaldoMinimoABM"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="negocio.Funciones"/>
+<fullyQualifiedTypeName name="datos.Lector"/>
 </qualifiedTypeNameHistroy>

@@ -53,12 +53,12 @@ public class LectorColectivo extends Lector {
 		this.botonesColectivo = botonesColectivo;
 	}
 	
-	public Boleto crearBoleto(Tarjeta tarjeta)throws Exception{
+/*	public Boleto crearBoleto(Tarjeta tarjeta)throws Exception{
 		if(estado==0){
 			throw new Exception("Por favor, antes de aproximar su tarjeta, indique su destino");
 		}
 		
-		BoletoABM bABM = new BoletoABM();
+		BoletoABM bABM = BoletoABM.getInstanciaBoletoABM();
 		long idBoton = estado;
 		BotonColectivoABM bcABM = new BotonColectivoABM();
 		BotonColectivo bc = new BotonColectivo();
@@ -82,8 +82,8 @@ public class LectorColectivo extends Lector {
 			
 		}
 		
-		/*if(ultimoBoleto.linea!=lector.linea)*/
-		if(tarjeta.getBoletos().get(getBoletos().size()-1)!=){ //aca hay q poner como condicion q la linea del ultimo boleto de lacoleccion de tarheta, sea diferente a la linea del lectorColectivo q quiere generar el boleto
+		if(ultimoBoleto.linea!=lector.linea)
+		if(tarjeta.getBoletos().get(getBoletos().size()-1)!=null){ //aca hay q poner como condicion q la linea del ultimo boleto de lacoleccion de tarheta, sea diferente a la linea del lectorColectivo q quiere generar el boleto
 			
 			if(tarjeta.isRedSUBE()){
 				if(tarjeta.getNivelRS()==1){
@@ -111,16 +111,7 @@ public class LectorColectivo extends Lector {
 			Boleto b = new Boleto(tarjeta, lc, monto, montoConDesc, fechaHora);
 			return b;
 		}
-		
-		
-			
-			
-		
-		
-		
-		
-		
-	}
+	}*/
 
 	@Override
 	public String toString() {

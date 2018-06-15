@@ -1,11 +1,16 @@
 package negocio;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 
 import dao.LectorSubteDao;
 import datos.LectorSubte;
 import datos.Linea;
+import datos.PrecioSubte;
 import datos.SaldoMinimo;
+import datos.TarifaSocial;
+import datos.Tarjeta;
+import datos.Usuario;
 
 public class LectorSubteABM {
 	private static LectorSubteABM instanciaLectorSubteABM;
@@ -24,8 +29,8 @@ public class LectorSubteABM {
 		else return c;
 	}
 
-	public int agregar(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String estacionSubte){
-		LectorSubte c= new LectorSubte(linea, saldoMinimo, tipoLector, estacionSubte);
+	public int agregar(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String estacionSubte, PrecioSubte precioSubte){
+		LectorSubte c= new LectorSubte(linea, saldoMinimo, tipoLector, estacionSubte, precioSubte);
 			return dao .agregar(c);
 	}
 	
@@ -41,5 +46,7 @@ public class LectorSubteABM {
 	public List<LectorSubte> traer(){
 		return dao .traer();
 		}
+
+
 
 }

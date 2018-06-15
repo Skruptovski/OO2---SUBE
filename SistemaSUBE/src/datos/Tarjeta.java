@@ -2,11 +2,12 @@ package datos;
 
 import java.util.*;
 
+import negocio.Funciones;
+
 public class Tarjeta {
 	
 	private long idTarjeta;
 	private double saldo=0;
-	private boolean redSUBE=false;
 	private int nivelRS;
 	private GregorianCalendar inicioRS;
 	private boolean baja;
@@ -16,10 +17,9 @@ public class Tarjeta {
 	
 	public Tarjeta() {}
 
-	public Tarjeta(double saldo, boolean redSUBE, int nivelRS,GregorianCalendar inicioRS, boolean baja,Usuario usuario) {
+	public Tarjeta(double saldo, int nivelRS,GregorianCalendar inicioRS, boolean baja,Usuario usuario) {
 		super();
 		this.saldo = saldo;
-		this.redSUBE = redSUBE;
 		this.nivelRS = nivelRS;
 		this.inicioRS = inicioRS;
 		this.baja = baja;
@@ -40,14 +40,6 @@ public class Tarjeta {
 
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
-	}
-
-	public boolean isRedSUBE() {
-		return redSUBE;
-	}
-
-	public void setRedSUBE(boolean redSUBE) {
-		this.redSUBE = redSUBE;
 	}
 
 	public int getNivelRS() {
@@ -101,9 +93,8 @@ public class Tarjeta {
 
 	@Override
 	public String toString() {
-		return "Tarjeta [idTarjeta=" + idTarjeta + ", saldo=" + saldo + ", redSUBE=" + redSUBE
-				+ ", nivelRS=" + nivelRS + ", baja=" + baja +"]";
+		return "Tarjeta [idTarjeta=" + idTarjeta + ", saldo=" + saldo + ", nivelRS=" + nivelRS + ", inicioRS="
+				+ Funciones.traerFechaCortaConHora(inicioRS) + ", baja=" + baja + "]";
 	}
-
 
 }

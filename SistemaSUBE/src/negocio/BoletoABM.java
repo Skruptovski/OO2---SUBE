@@ -26,19 +26,7 @@ public class BoletoABM {
 		Boleto c= new Boleto(tarjeta,lector, monto, montoConDescuento, fechaHoraBoleto);
 			return dao .agregar(c);
 	}
-	public int agregar(Tarjeta tarjeta,LectorTren lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto){
-		Boleto c= new Boleto(tarjeta,lector, monto, montoConDescuento, fechaHoraBoleto);
-			return dao .agregar(c);
-	}
-	public int agregar(Tarjeta tarjeta,LectorSubte lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto){
-		Boleto c= new Boleto(tarjeta,lector, monto, montoConDescuento, fechaHoraBoleto);
-			return dao .agregar(c);
-	}
-	public int agregar(Tarjeta tarjeta,LectorColectivo lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto){
-		Boleto c= new Boleto(tarjeta,lector, monto, montoConDescuento, fechaHoraBoleto);
-			return dao .agregar(c);
-	}
-	
+
 	public void modificar(Boleto c){
 		dao .actualizar(c);
 	}
@@ -51,5 +39,10 @@ public class BoletoABM {
 	public List<Boleto> traer(){
 		return dao .traer();
 		}
-
+	public Boleto traerBoletoCompleto(long id) {
+		return dao.traerBoletoCompleto(id);
+	}
+	public Boleto traerBoletoYLector(long id) {
+		return dao.traerBoletoYLector(id);
+	}
 }

@@ -7,37 +7,16 @@ public class Boleto {
 	private Tarjeta tarjeta;
 	private Lector lector;
 	private double monto;
-	private double montoConDescuento;
+	private double montoConDescuentos;
 	private GregorianCalendar fechaHoraBoleto;
 	
 	public Boleto() {}
 
-	public Boleto(Tarjeta tarjeta,Lector lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto) {
+	public Boleto(Tarjeta tarjeta,Lector lector, double monto, double montoConDescuentos, GregorianCalendar fechaHoraBoleto) {
 		this.tarjeta = tarjeta;
 		this.lector = lector;
 		this.monto = monto;
-		this.montoConDescuento = montoConDescuento;
-		this.fechaHoraBoleto = fechaHoraBoleto;
-	}
-	public Boleto(Tarjeta tarjeta,LectorTren lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto) {
-		this.tarjeta = tarjeta;
-		this.lector = lector;
-		this.monto = monto;
-		this.montoConDescuento = montoConDescuento;
-		this.fechaHoraBoleto = fechaHoraBoleto;
-	}
-	public Boleto(Tarjeta tarjeta,LectorSubte lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto) {
-		this.tarjeta = tarjeta;
-		this.lector = lector;
-		this.monto = monto;
-		this.montoConDescuento = montoConDescuento;
-		this.fechaHoraBoleto = fechaHoraBoleto;
-	}
-	public Boleto(Tarjeta tarjeta,LectorColectivo lector, double monto, double montoConDescuento, GregorianCalendar fechaHoraBoleto) {
-		this.tarjeta = tarjeta;
-		this.lector = lector;
-		this.monto = monto;
-		this.montoConDescuento = montoConDescuento;
+		this.montoConDescuentos = montoConDescuentos;
 		this.fechaHoraBoleto = fechaHoraBoleto;
 	}
 
@@ -73,12 +52,12 @@ public class Boleto {
 		this.monto = monto;
 	}
 
-	public double getMontoConDescuento() {
-		return montoConDescuento;
+	public double getMontoConDescuentos() {
+		return montoConDescuentos;
 	}
 
-	public void setMontoConDescuento(double montoConDescuento) {
-		this.montoConDescuento = montoConDescuento;
+	public void setMontoConDescuentos(double montoConDescuentos) {
+		this.montoConDescuentos = montoConDescuentos;
 	}
 
 	public GregorianCalendar getFechaHoraBoleto() {
@@ -88,6 +67,13 @@ public class Boleto {
 	public void setFechaHoraBoleto(GregorianCalendar fechaHoraBoleto) {
 		this.fechaHoraBoleto = fechaHoraBoleto;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Boleto [idBoleto=" + idBoleto + ", monto=" + monto + ", montoConDescuentos=" + montoConDescuentos
+				+ ", fechaHoraBoleto=" + fechaHoraBoleto.getTime() + "]\n";
+	}
+
+
 	
 }

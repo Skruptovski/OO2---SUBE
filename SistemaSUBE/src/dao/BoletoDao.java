@@ -81,6 +81,7 @@ public class BoletoDao {
 		return objeto;
 	}
 	
+	
 	@SuppressWarnings ( "unchecked" )
 	public List<Boleto> traer() throws HibernateException {
 		List<Boleto> lista= null ;
@@ -91,6 +92,31 @@ public class BoletoDao {
 			session .close();
 		}
 		return lista;
+	}
+	
+	public Boleto traerBoletoCompleto(long id) throws HibernateException {
+		Boleto objeto = null;
+		try {
+		iniciaOperacion();
+		String hql="from Boleto b inner join fetch b.lector inner join fetch b.tarjeta where b.idBoleto ="+ id;
+		objeto = (Boleto) session.createQuery(hql).uniqueResult();
+		} 
+		finally {
+		session.close();
+		}
+		return objeto;
+		}
+	
+	public Boleto traerBoletoYLector(long id){
+		Boleto objeto = null;
+		try{
+			iniciaOperacion();
+			String hql = "from Boleto c inner join fetch c.lector where c.idBoleto ="+id;
+			objeto = (Boleto) session.createQuery(hql).uniqueResult();
+		} finally {
+			session.close();
+		}
+		return objeto;
 	}
 }
 	

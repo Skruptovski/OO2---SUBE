@@ -7,7 +7,6 @@
 			<generator class="identity"/>
 		</id>
 		<property column="saldo" name="saldo" type="double"/>
-		<property column="redSUBE" name="redSUBE" type="boolean"/>
 		<property column="nivelRS" name="nivelRS" type="int"/>
 		<property column="inicioRS" name="inicioRS" type="calendar"/>	
 		<property column="baja" name="baja" type="boolean"/>

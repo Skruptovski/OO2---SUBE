@@ -1,6 +1,6 @@
 package dao;
 
-import java.util.List;
+import java.util.*;
 
 import org.hibernate.*;
 
@@ -88,6 +88,21 @@ public class TarjetaDao {
 			String hql= "from Tarjeta c where c.idTarjeta =" +id;
 			objeto=(Tarjeta) session .createQuery(hql).uniqueResult();
 			Hibernate. initialize (objeto.getBoletos());
+		}
+		finally {
+			session .close();
+		}
+		return objeto;
+
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Boleto> traerBoletosDeTarjeta( long id) throws HibernateException {
+		List<Boleto> objeto = null ;
+		try {
+			iniciaOperacion();
+			String hql= "from Boleto b where b.tarjeta =" +id;
+			objeto= session .createQuery(hql).list();
 		}
 		finally {
 			session .close();

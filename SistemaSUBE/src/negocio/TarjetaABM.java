@@ -1,8 +1,8 @@
 package negocio;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 import dao.TarjetaDao;
+import datos.Boleto;
 import datos.Tarjeta;
 import datos.Usuario;
 
@@ -19,12 +19,12 @@ public class TarjetaABM {
 	
 	public Tarjeta traer( long id)throws Exception{
 		Tarjeta c= dao .traer(id);
-		if(c==null) throw new Exception("El Usuario con esa ID no existe");
+		if(c==null) throw new Exception("La Tarjeta con esa ID no existe");
 		else return c;
 	}
 
-	public int agregar(double saldo, boolean redSUBE, int nivelRS,GregorianCalendar inicioRS, boolean baja,Usuario usuario){
-		Tarjeta c= new Tarjeta(saldo,redSUBE,nivelRS,inicioRS,baja,usuario);
+	public int agregar(double saldo, int nivelRS,GregorianCalendar inicioRS, boolean baja,Usuario usuario){
+		Tarjeta c= new Tarjeta(saldo,nivelRS,inicioRS,baja,usuario);
 			return dao .agregar(c);
 	}
 	
@@ -40,5 +40,9 @@ public class TarjetaABM {
 	public List<Tarjeta> traer(){
 		return dao .traer();
 		}
+	
+	public List<Boleto> traerBoletosDeTarjeta(long id){
+		return dao.traerBoletosDeTarjeta(id);
+	}
 
 }

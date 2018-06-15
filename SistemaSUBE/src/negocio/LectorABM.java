@@ -1,10 +1,15 @@
 package negocio;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import dao.LectorDao;
 import datos.Lector;
 import datos.Linea;
+import datos.PrecioSubte;
 import datos.SaldoMinimo;
+import datos.TarifaSocial;
+import datos.Tarjeta;
+import datos.Usuario;
 
 public class LectorABM {
 	private static LectorABM instanciaLectorABM;
@@ -40,5 +45,8 @@ public class LectorABM {
 	public List<Lector> traer(){
 		return dao .traer();
 		}
+	public Lector traerLectorYLinea(long id){
+		return dao.traerLectorYLinea(id);
+	}
 
 }

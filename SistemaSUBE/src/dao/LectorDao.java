@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.Lector;
+import datos.Usuario;
 
 public class LectorDao {
 	private static Session session ;
@@ -89,6 +90,19 @@ public class LectorDao {
 			session .close();
 		}
 		return lista;
+	}
+	
+	
+	public Lector traerLectorYLinea(long id){
+		Lector objeto = null;
+		try{
+			iniciaOperacion();
+			String hql = "from Lector c inner join fetch c.linea where c.idLector ="+id;
+			objeto = (Lector) session.createQuery(hql).uniqueResult();
+		} finally {
+			session.close();
+		}
+		return objeto;
 	}
 }
 	
