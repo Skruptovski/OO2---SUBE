@@ -14,7 +14,7 @@ public class TestAgregarTarjeta {
 		GregorianCalendar inicioRS = new GregorianCalendar();
 		TarjetaABM abm = TarjetaABM.getInstanciaTarjetaABM();
 		UsuarioABM uabm = UsuarioABM.getInstanciaUsuarioABM();
-		abm.agregar(saldo, nivelRS,inicioRS, baja,uabm.traerI(1));
+		abm.agregar(saldo, nivelRS,inicioRS, baja,uabm.traerI(2));
 		System.out.println("Cargado Exitosamente");
 	}
 }

@@ -90,6 +90,10 @@ public class Tarjeta {
 	public void setCargas(Set<Carga> cargas) {
 		this.cargas = cargas;
 	}
+	
+	public void darBaja(){
+		this.baja = true;
+	}
 
 	@Override
 	public String toString() {
