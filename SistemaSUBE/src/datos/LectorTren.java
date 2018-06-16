@@ -7,8 +7,8 @@ public class LectorTren extends Lector{
 
 	public LectorTren() {}
 
-	public LectorTren(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String estacionSubte, boolean salida, Estacion estacion) {
-		super(linea,saldoMinimo,tipoLector);
+	public LectorTren(Linea linea,SaldoMinimo saldoMinimo, boolean salida, Estacion estacion) {
+		super(linea,saldoMinimo);
 		this.salida = salida;
 		this.estacion = estacion;
 	}
@@ -36,6 +36,5 @@ public class LectorTren extends Lector{
 	public void setEstacion(Estacion estacion) {
 		this.estacion = estacion;
 	}
-	
-	
+
 }

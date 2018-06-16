@@ -15,8 +15,8 @@ public class LectorColectivo extends Lector {
 	
 	public LectorColectivo (){}
 
-	public LectorColectivo(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String interno, int estado) {
-		super(linea, saldoMinimo, tipoLector);
+	public LectorColectivo(Linea linea,SaldoMinimo saldoMinimo, String interno, int estado) {
+		super(linea, saldoMinimo);
 		this.interno = interno;
 		this.estado = estado;
 	}

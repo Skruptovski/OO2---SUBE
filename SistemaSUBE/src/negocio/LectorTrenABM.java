@@ -25,8 +25,8 @@ public class LectorTrenABM {
 		else return c;
 	}
 
-	public int agregar(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String estacionSubte, boolean salida, Estacion estacion){
-		LectorTren c= new LectorTren(linea, saldoMinimo, tipoLector, estacionSubte,salida, estacion);
+	public int agregar(Linea linea,SaldoMinimo saldoMinimo, boolean salida, Estacion estacion){
+		LectorTren c= new LectorTren(linea, saldoMinimo,salida, estacion);
 			return dao .agregar(c);
 	}
 	

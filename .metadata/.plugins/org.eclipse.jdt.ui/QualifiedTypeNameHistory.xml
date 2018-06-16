@@ -18,4 +18,10 @@
 <fullyQualifiedTypeName name="negocio.Funciones"/>
 <fullyQualifiedTypeName name="datos.Lector"/>
 <fullyQualifiedTypeName name="datos.Tarjeta"/>
+<fullyQualifiedTypeName name="negocio.EstacionABM"/>
+<fullyQualifiedTypeName name="negocio.SeccionTrenABM"/>
+<fullyQualifiedTypeName name="negocio.TramoTrenABM"/>
+<fullyQualifiedTypeName name="datos.Estacion"/>
+<fullyQualifiedTypeName name="datos.SeccionTren"/>
+<fullyQualifiedTypeName name="negocio.LectorTrenABM"/>
 </qualifiedTypeNameHistroy>

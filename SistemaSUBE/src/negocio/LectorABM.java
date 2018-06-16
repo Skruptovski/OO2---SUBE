@@ -28,8 +28,8 @@ public class LectorABM {
 		else return c;
 	}
 
-	public int agregar(Linea linea,SaldoMinimo saldoMinimo, char tipoLector){
-		Lector c= new Lector(linea,saldoMinimo,tipoLector);
+	public int agregar(Linea linea,SaldoMinimo saldoMinimo){
+		Lector c= new Lector(linea,saldoMinimo);
 			return dao .agregar(c);
 	}
 	

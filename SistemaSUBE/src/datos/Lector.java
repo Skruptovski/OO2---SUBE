@@ -6,16 +6,14 @@ public class Lector {
 	private long idLector;
 	private Linea linea;
 	private SaldoMinimo saldoMinimo;
-	private char tipoLector;
 	private Set<Boleto> boletos;
 	
 	public Lector() {}
 
-	public Lector(Linea linea,SaldoMinimo saldoMinimo, char tipoLector) {
+	public Lector(Linea linea,SaldoMinimo saldoMinimo) {
 		super();
 		this.linea = linea;
 		this.saldoMinimo = saldoMinimo;
-		this.tipoLector = tipoLector;
 	}
 
 	public long getIdLector() {
@@ -42,14 +40,6 @@ public class Lector {
 		this.saldoMinimo = saldoMinimo;
 	}
 
-	public char getTipoLector() {
-		return tipoLector;
-	}
-
-	public void setTipoLector(char tipoLector) {
-		this.tipoLector = tipoLector;
-	}
-
 	public Set<Boleto> getBoletos() {
 		return boletos;
 	}
@@ -60,7 +50,7 @@ public class Lector {
 
 	@Override
 	public String toString() {
-		return "Lector [idLector=" + idLector + ", tipoLector=" + tipoLector + "]";
+		return "Lector [idLector=" + idLector + "]";
 	}
 
 }

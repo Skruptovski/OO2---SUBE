@@ -20,8 +20,10 @@
 		<mapping resource="mapeo/SaldoMinimo.hbm.xml"/>	
 		<mapping resource="mapeo/Carga.hbm.xml"/>
 		<mapping resource="mapeo/Boleteria.hbm.xml"/>
-
-		<mapping resource="mapeo/PrecioSubte.hbm.xml"/>	
+		<mapping resource="mapeo/Estacion.hbm.xml"/>	
+		<mapping resource="mapeo/PrecioSubte.hbm.xml"/>
+		<mapping resource="mapeo/TramoTren.hbm.xml"/>
+		<mapping resource="mapeo/SeccionTren.hbm.xml"/>
 		
 		<!-- 
 		<mapping resource="mapeo/Beneficio.hbm.xml"/>			x		"x" -> quiere decir q ya está declarado mas arriba

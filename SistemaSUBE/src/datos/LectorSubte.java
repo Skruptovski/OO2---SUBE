@@ -16,8 +16,8 @@ public class LectorSubte extends Lector{
 
 	public LectorSubte() {}
 
-	public LectorSubte(Linea linea,SaldoMinimo saldoMinimo, char tipoLector, String estacionSubte,PrecioSubte precioSubte) {
-		super(linea,saldoMinimo,tipoLector);
+	public LectorSubte(Linea linea,SaldoMinimo saldoMinimo, String estacionSubte,PrecioSubte precioSubte) {
+		super(linea,saldoMinimo);
 		this.estacionSubte = estacionSubte;
 		this.precioSubte = precioSubte;
 	}
