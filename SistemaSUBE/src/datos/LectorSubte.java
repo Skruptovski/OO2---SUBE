@@ -1,11 +1,13 @@
 package datos;
 
-import java.util.*;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import negocio.BoletoABM;
 import negocio.Funciones;
 import negocio.LectorABM;
 import negocio.PrecioSubteABM;
+import negocio.SaldoMinimoABM;
 import negocio.TarjetaABM;
 import negocio.UsuarioABM;
 
@@ -49,40 +51,40 @@ public class LectorSubte extends Lector{
 
 	public boolean crearBoleto(Tarjeta tarjeta) throws Exception{
 		if (tarjeta.isBaja())throw new Exception("La tarjeta fue dada de baja");
-		else{
-			UsuarioABM uabm = UsuarioABM.getInstanciaUsuarioABM();
-			Usuario usuario = null;
-			PrecioSubteABM psabm = PrecioSubteABM.getInstanciaPrecioSubteABM();
-			PrecioSubte precioSubte = psabm.traer(1);
-			LectorABM labm = LectorABM.getInstanciaLectorABM();
-			Linea linea = labm.traerLectorYLinea(this.getIdLector()).getLinea();
-			TarjetaABM tarjABM=TarjetaABM.getInstanciaTarjetaABM();
-			BoletoABM bABM=BoletoABM.getInstanciaBoletoABM();
-			
-			
-			double monto = precioSubte.getPrecio();
-			double desc=1;
-			double multiplicador=1;
-			double montoConDescuentos= monto*multiplicador;
-			GregorianCalendar fechaHoraBoleto = new GregorianCalendar();
-			GregorianCalendar fechaHoraInicioRSTarjeta = new GregorianCalendar();
-			int segsTotales;
-			int nivelRS=tarjeta.getNivelRS();
-			Boleto boletoAux = null;
-			Lector lectorAux = null;
-			Linea lineaAux = null;
-			List<Boleto> listaBoletos=tarjABM.traerBoletosDeTarjeta(tarjeta.getIdTarjeta());
-			if(!listaBoletos.isEmpty()){
-				boletoAux = listaBoletos.get(listaBoletos.size()-1);
-				 lectorAux =	bABM.traerBoletoYLector(boletoAux.getIdBoleto()).getLector();
-				 lineaAux = labm.traerLectorYLinea(lectorAux.getIdLector()).getLinea();
-				 if(lineaAux.getLinea().equals(linea.getLinea())) {
-						nivelRS=0;
-					}
+
+		UsuarioABM uabm = UsuarioABM.getInstanciaUsuarioABM();
+		Usuario usuario = null;
+		PrecioSubteABM psabm = PrecioSubteABM.getInstanciaPrecioSubteABM();
+		PrecioSubte precioSubte = psabm.traer(1);
+		LectorABM labm = LectorABM.getInstanciaLectorABM();
+		Linea linea = labm.traerLectorYLinea(this.getIdLector()).getLinea();
+		TarjetaABM tarjABM=TarjetaABM.getInstanciaTarjetaABM();
+		BoletoABM bABM=BoletoABM.getInstanciaBoletoABM();
+
+
+		double monto = precioSubte.getPrecio();
+		double desc=1;
+		double multiplicador=1;
+		double montoConDescuentos= monto*multiplicador;
+		GregorianCalendar fechaHoraBoleto = new GregorianCalendar();
+		GregorianCalendar fechaHoraInicioRSTarjeta = new GregorianCalendar();
+		int segsTotales;
+		int nivelRS=tarjeta.getNivelRS();
+		Boleto boletoAux = null;
+		Lector lectorAux = null;
+		Linea lineaAux = null;
+		List<Boleto> listaBoletos=tarjABM.traerBoletosDeTarjeta(tarjeta.getIdTarjeta());
+		if(!listaBoletos.isEmpty()){
+			boletoAux = listaBoletos.get(listaBoletos.size()-1);
+			lectorAux =	bABM.traerBoletoYLector(boletoAux.getIdBoleto()).getLector();
+			lineaAux = labm.traerLectorYLinea(lectorAux.getIdLector()).getLinea();
+			if(lineaAux.getLinea().equals(linea.getLinea())) {
+				nivelRS=0;
 			}
+
 			fechaHoraInicioRSTarjeta=tarjeta.getInicioRS();
-			
-			
+
+
 			int horaIni=Funciones.traerHoras(fechaHoraInicioRSTarjeta);
 			int minIni=Funciones.traerMinutos(fechaHoraInicioRSTarjeta);
 			int segIni=Funciones.traerSegundos(fechaHoraInicioRSTarjeta);
@@ -93,7 +95,7 @@ public class LectorSubte extends Lector{
 			segsTotales = (horaActual*3600+minActual*60+segActual)-(horaIni*3600+minIni*60+segIni);
 
 			if(segsTotales<=7200) {//estamos en RS
-			
+
 				if(nivelRS==1) {
 					desc=50;
 					multiplicador=(100-desc)/100;
@@ -121,16 +123,20 @@ public class LectorSubte extends Lector{
 				nivelRS=1;
 				fechaHoraInicioRSTarjeta=fechaHoraBoleto;
 			}
-			
-			if(tarjeta.getUsuario()!=null){
-				usuario = uabm.traerUsuarioYBeneficio(tarjeta.getUsuario().getIdUsuario());
-				if(usuario.getBeneficio() instanceof TarifaSocial) {
+		}
+		if(tarjeta.getUsuario()!=null){
+			usuario = uabm.traerUsuarioYBeneficio(tarjeta.getUsuario().getIdUsuario());
+			if(usuario.getBeneficio() instanceof TarifaSocial) {
 
-					montoConDescuentos=((TarifaSocial) usuario.getBeneficio()).getPorcentajeDescuento()*monto;
-				}
+				montoConDescuentos=((TarifaSocial) usuario.getBeneficio()).getPorcentajeDescuento()*monto;
 			}
+		}
+
 		montoConDescuentos=montoConDescuentos*multiplicador;
-		
+		SaldoMinimoABM smabm = SaldoMinimoABM.getInstanciaSaldoMinimoABM();
+		SaldoMinimo saldoMinimo = smabm.traer(1);
+		if((tarjeta.getSaldo()-montoConDescuentos)<saldoMinimo.getSaldoMinimo())throw new Exception("Saldo insuficiente");
+
 		tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
 		tarjeta.setNivelRS(nivelRS);
 		tarjeta.setSaldo(tarjeta.getSaldo()-montoConDescuentos);
@@ -138,14 +144,13 @@ public class LectorSubte extends Lector{
 		TarjetaABM tABM = TarjetaABM.getInstanciaTarjetaABM();
 		tABM.modificar(tarjeta);
 		return true;
-		}
-		
-}
 
-@Override
-public String toString() {
-	return "LectorSubte [idLectorSubte=" + getIdLector() + ", estacionSubte=" + estacionSubte + "]";
-}
+	}
+
+	@Override
+	public String toString() {
+		return "LectorSubte [idLectorSubte=" + getIdLector() + ", estacionSubte=" + estacionSubte + "]";
+	}
 
 
 }

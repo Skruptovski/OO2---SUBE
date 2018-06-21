@@ -42,5 +42,11 @@ public class TramoTrenABM {
 	public List<TramoTren> traer(){
 		return dao .traer();
 		}
+	public TramoTren traer(long est1, long est2){
+		return dao.traer(est1, est2);
+	}
+	public  TramoTren traerTramoYSeccion(long id){
+		return dao.traerTramoYSeccion(id);
+	}
 
 }

@@ -5,10 +5,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import datos.TarifaSocial;
+import datos.Estacion;
+import datos.Lector;
+import datos.SeccionTren;
 import datos.TramoTren;
-import datos.BoletoEstudiantil;
-import datos.LectorTren;
 
 public class TramoTrenDao {
 	private static Session session ;
@@ -92,5 +92,28 @@ public class TramoTrenDao {
 			session .close();
 		}
 		return lista;
+	}
+	
+	public  TramoTren traer(long est1, long est2){
+		TramoTren tt;
+		try{
+			iniciaOperacion();
+			String hql = "from TramoTren tt where tt.idEstacion1 ="+est1+"and tt.idEstacion2 ="+est2+"or where tt.idEstacion1 ="+est2+"and tt.idEstacion2 ="+est1;
+			tt = (TramoTren) session.createQuery(hql).uniqueResult();
+		} finally {
+			session.close();
+		}
+		return tt;
+	}
+	public  TramoTren traerTramoYSeccion(long id){
+		TramoTren tt;
+		try{
+			iniciaOperacion();
+			String hql = "from TramoTren c inner join fetch c.idSeccionTren where c.idTramoTren ="+id;
+			tt = (TramoTren) session.createQuery(hql).uniqueResult();
+		} finally {
+			session.close();
+		}
+		return tt;
 	}
 }

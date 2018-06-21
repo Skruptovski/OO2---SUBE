@@ -10,10 +10,13 @@ public class Estacion {
 	private Set<LectorTren> lectoresTren;
 	
 	public Estacion() {}
-	
+
 	public Estacion(String estacion) {
+		super();
 		this.estacion = estacion;
 	}
+
+
 
 	public long getIdEstacion() {
 		return idEstacion;

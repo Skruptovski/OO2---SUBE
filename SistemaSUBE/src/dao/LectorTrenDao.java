@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.TarifaSocial;
+import datos.Boleto;
 import datos.BoletoEstudiantil;
 import datos.LectorTren;
 
@@ -92,4 +93,5 @@ public class LectorTrenDao {
 		}
 		return lista;
 	}
+	
 }

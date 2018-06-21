@@ -104,5 +104,6 @@ public class LectorDao {
 		}
 		return objeto;
 	}
+	
 }
 	
