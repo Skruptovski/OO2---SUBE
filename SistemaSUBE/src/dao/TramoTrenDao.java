@@ -98,7 +98,7 @@ public class TramoTrenDao {
 		TramoTren tt;
 		try{
 			iniciaOperacion();
-			String hql = "from TramoTren tt where tt.idEstacion1 ="+est1+"and tt.idEstacion2 ="+est2+"or where tt.idEstacion1 ="+est2+"and tt.idEstacion2 ="+est1;
+			String hql = "from TramoTren where idEstacion1 ="+est1+" and idEstacion2 ="+est2+" or idEstacion1 ="+est2+" and idEstacion2 ="+est1;
 			tt = (TramoTren) session.createQuery(hql).uniqueResult();
 		} finally {
 			session.close();
@@ -109,7 +109,7 @@ public class TramoTrenDao {
 		TramoTren tt;
 		try{
 			iniciaOperacion();
-			String hql = "from TramoTren c inner join fetch c.idSeccionTren where c.idTramoTren ="+id;
+			String hql = "from TramoTren c inner join fetch c.seccionTren where idTramoTren ="+id;
 			tt = (TramoTren) session.createQuery(hql).uniqueResult();
 		} finally {
 			session.close();

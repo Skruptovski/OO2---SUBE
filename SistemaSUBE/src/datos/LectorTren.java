@@ -75,7 +75,7 @@ public class LectorTren extends Lector{
 		TarjetaABM tarjABM=TarjetaABM.getInstanciaTarjetaABM();
 		BoletoABM bABM=BoletoABM.getInstanciaBoletoABM();
 		SeccionTrenABM stABM=SeccionTrenABM.getInstanciaSeccionTrenABM();
-		SeccionTren st = stABM.traer(3);
+		SeccionTren st = stABM.traer(1);
 		double monto=st.getPrecio();
 		double desc=1;
 		double multiplicador=1;
@@ -314,7 +314,7 @@ public class LectorTren extends Lector{
 
 @Override
 public String toString() {
-	return "LectorTren [idLectorTren=" + idLectorTren + ", salida=" + salida + ", estacion=" + estacion + "]";
+	return "LectorTren [idLectorTren=" + getIdLector() + ", salida=" + salida + ", estacion=" + "]";
 }
 
 
