@@ -53,7 +53,9 @@ public class LectorTren extends Lector{
 	}
 
 	public boolean crearBoleto(Tarjeta tarjeta) throws Exception{
-		if (tarjeta.isBaja())throw new Exception("La tarjeta fue dada de baja");
+		if (tarjeta.isBaja()) {
+			throw new Exception("La tarjeta fue dada de baja");
+		}
 
 		/*	si --> LectorEntrada & ListBoletoNull					    --> CobraMaximo					(1)A
 		 * 	si --> LectorSalida  & ListBoletoNull 						--> CobraMaximo & nivelRS=1		(2)
@@ -75,11 +77,12 @@ public class LectorTren extends Lector{
 		TarjetaABM tarjABM=TarjetaABM.getInstanciaTarjetaABM();
 		BoletoABM bABM=BoletoABM.getInstanciaBoletoABM();
 		SeccionTrenABM stABM=SeccionTrenABM.getInstanciaSeccionTrenABM();
-		SeccionTren st = stABM.traer(1);
+		SeccionTren st = stABM.traer(3);
 		double monto=st.getPrecio();
 		double desc=1;
 		double multiplicador=1;
 		double montoConDescuentos= monto*multiplicador;
+		double montoConDescuentosSinRS=montoConDescuentos;
 		GregorianCalendar fechaHoraBoleto = new GregorianCalendar();
 		GregorianCalendar fechaHoraInicioRSTarjeta = new GregorianCalendar();
 		int segsTotales;
@@ -87,13 +90,141 @@ public class LectorTren extends Lector{
 		Boleto boletoAux = null;
 		Lector lectorAux = null;
 		Linea lineaAux = null;
+		TarjetaABM tABM = TarjetaABM.getInstanciaTarjetaABM();
 		List<Boleto> listaBoletos=tarjABM.traerBoletosDeTarjeta(tarjeta.getIdTarjeta());
-		boletoAux = listaBoletos.get(listaBoletos.size()-1);
-		lectorAux =	bABM.traerBoletoYLector(boletoAux.getIdBoleto()).getLector();
-		lineaAux = labm.traerLectorYLinea(lectorAux.getIdLector()).getLinea();
+		SaldoMinimoABM smabm = SaldoMinimoABM.getInstanciaSaldoMinimoABM();
+		SaldoMinimo saldoMinimo = smabm.traer(1);
+		fechaHoraInicioRSTarjeta=tarjeta.getInicioRS();
+		int horaIni=Funciones.traerHoras(fechaHoraInicioRSTarjeta);
+		int minIni=Funciones.traerMinutos(fechaHoraInicioRSTarjeta);
+		int segIni=Funciones.traerSegundos(fechaHoraInicioRSTarjeta);
+		int horaActual=Funciones.traerHoras(fechaHoraBoleto);
+		int minActual=Funciones.traerMinutos(fechaHoraBoleto);
+		int segActual=Funciones.traerSegundos(fechaHoraBoleto);
+		segsTotales = (horaActual*3600+minActual*60+segActual)-(horaIni*3600+minIni*60+segIni);
+		boolean casoLindo=false;
+
+		if(!listaBoletos.isEmpty()){
+			boletoAux = listaBoletos.get(listaBoletos.size()-1);
+			lectorAux =	bABM.traerBoletoYLector(boletoAux.getIdBoleto()).getLector();
+			lineaAux = labm.traerLectorYLinea(lectorAux.getIdLector()).getLinea();
+		}
+		if(tarjeta.getUsuario()!=null){
+			usuario = uabm.traerUsuarioYBeneficio(tarjeta.getUsuario().getIdUsuario());
+			if(usuario.getBeneficio() instanceof TarifaSocial) {
+
+				montoConDescuentos=((TarifaSocial) usuario.getBeneficio()).getPorcentajeDescuento()*monto;
+				montoConDescuentosSinRS=montoConDescuentos;
+			}
+		}
+		if(segsTotales<=7200) {//estamos en RS
+			esRS=true;
+			if(nivelRS==1) {
+				desc=50;
+				multiplicador=(100-desc)/100;
+			}
+			else if(nivelRS==2 || nivelRS==3) {
+				desc=75;
+				multiplicador=(100-desc)/100;
+			}
+			else if(nivelRS==4) {
+				desc=75;
+				multiplicador=(100-desc)/100;
+			}
+			else if(nivelRS==0) {
+				desc=0;
+				multiplicador=(100-desc)/100;
+				fechaHoraInicioRSTarjeta=fechaHoraBoleto;
+			}
+		}
+		else {
+			esRS=false;
+			multiplicador=1;
+			fechaHoraInicioRSTarjeta=fechaHoraBoleto;
+		}
+		
+		montoConDescuentos=montoConDescuentos*multiplicador;
+		
+		//if((tarjeta.getSaldo()-montoConDescuentos)<saldoMinimo.getSaldoMinimo())throw new Exception("Saldo insuficiente");
+
+		if((!salida)){
+			if (nivelRS==0) {
+				tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
+				System.out.println("ENTRADA, MAXIMO. PENDIENTE DEVOLUCION");
+			} else {
+				if(lineaAux.getLinea().equals(linea.getLinea())) {
+					if (!((LectorTren)lectorAux).isSalida()) {
+						throw new Exception("NO PODES SALIR POR UN LECTOR DE ENTRADA");
+					}
+					else {
+						if((tarjeta.getSaldo()-montoConDescuentosSinRS)<saldoMinimo.getSaldoMinimo())throw new Exception("Saldo insuficiente");
+							tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
+							nivelRS=0;
+							multiplicador=1;//lo pone en 1 porq tiene q cobrarlo sin descuento
+							System.out.println("ENTRADA, MAXIMO. REINICIO,MISMA LINEA. PENDIENTE DEVOLUCION");
+					}
+				}
+				else{
+					/*if(esRS) {
+						montoConDescuentos=montoConDescuentos*multiplicador;
+					}no es necesario*/
+				}
+			}
+		} else {
+			if(lineaAux.getLinea().equals(linea.getLinea())) {
+				if (lectorAux instanceof LectorTren && ((LectorTren)lectorAux).isSalida()) {
+					//esta saliendo del tren y NO paso antes por la entrada
+					tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
+					nivelRS=1;
+					multiplicador=1;
+					System.out.println("SALIDA,SIN PREVIA ENTRADA. COBRO MAXIMO");
+				}else{
+					//Esta saliendo del tren y antes paso por la entrada
+					nivelRS=nivelRS+1;
+					casoLindo=true;
+					System.out.println("AL TOQUE");
+				}
+			}else{
+				tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
+				multiplicador=1;
+				nivelRS=1;
+				System.out.println("SALIDA, PERO CON DIFERENTE LINEA. COBRO MAXIMO");
+			}
+		}
+		montoConDescuentos=montoConDescuentosSinRS*multiplicador;
+		tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
+		tarjeta.setNivelRS(nivelRS);
+		if(casoLindo) {/*
+			//Calculador de monto segun seccion
+			EstacionABM estABM = EstacionABM.getInstanciaEstacionABM();
+			TramoTrenABM tramoTrenABM = TramoTrenABM.getInstanciaTramoTrenABM();
+			LectorTrenABM lectorTrenABM = LectorTrenABM.getInstanciaLectorTrenABM();
+			LectorTren lectT=(LectorTren)lectorAux;
+			
+			Estacion est1 = estacion;
+			Estacion est2 = lectorTrenABM.traer(lectT.getIdLector()).getEstacion();
+			
+			long id1 = est1.getIdEstacion();
+			long id2 = est2.getIdEstacion();
+			
+			TramoTren tramoTren = tramoTrenABM.traer(id1, id2);
+			long idTramoTren = tramoTren.getIdTramoTren();
+			SeccionTren seccionTren = tramoTrenABM.traerTramoYSeccion(idTramoTren).getSeccionTren();
+			double montoReal = seccionTren.getPrecio();
+			double montoRealConDescuentos=0;
+			double montoAnterior = boletoAux.getMonto();
+			double montoConDescuentosAnterior = boletoAux.getMontoConDescuentos();
+			double devolucion=montoAnterior-montoReal;
+			ESTO LO TERMINO EN CASA*/
+		}
+		tarjeta.setSaldo(tarjeta.getSaldo()-montoConDescuentos);
+		bABM.agregar(tarjeta,this, monto, montoConDescuentos, fechaHoraBoleto);
+		tABM.modificar(tarjeta);
+		return true;
+	}
 
 		//(1)A
-		if((!salida & listaBoletos.isEmpty())){
+		/*if((!salida & listaBoletos.isEmpty())){
 			if(tarjeta.getUsuario()!=null){
 				usuario = uabm.traerUsuarioYBeneficio(tarjeta.getUsuario().getIdUsuario());
 				if(usuario.getBeneficio() instanceof TarifaSocial) {
@@ -102,9 +233,6 @@ public class LectorTren extends Lector{
 				}
 			}
 
-			//Control de saldo minimo
-			SaldoMinimoABM smabm = SaldoMinimoABM.getInstanciaSaldoMinimoABM();
-			SaldoMinimo saldoMinimo = smabm.traer(1);
 			if((tarjeta.getSaldo()-montoConDescuentos)<saldoMinimo.getSaldoMinimo())throw new Exception("Saldo insuficiente");
 
 			tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
@@ -153,23 +281,19 @@ public class LectorTren extends Lector{
 					montoConDescuentos=((TarifaSocial) usuario.getBeneficio()).getPorcentajeDescuento()*monto;
 				}
 			}
-
-			//Control de saldo minimo
-			SaldoMinimoABM smabm = SaldoMinimoABM.getInstanciaSaldoMinimoABM();
-			SaldoMinimo saldoMinimo = smabm.traer(1);
 			if((tarjeta.getSaldo()-montoConDescuentos)<saldoMinimo.getSaldoMinimo())throw new Exception("Saldo insuficiente");
 
 			tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
 			tarjeta.setNivelRS(nivelRS);
 			tarjeta.setSaldo(tarjeta.getSaldo()-montoConDescuentos);
 			bABM.agregar(tarjeta,this, monto, montoConDescuentos, fechaHoraBoleto);
-			TarjetaABM tABM = TarjetaABM.getInstanciaTarjetaABM();
 			tABM.modificar(tarjeta);
+			System.out.println("2");
 			return true;
 		}
 
 		//(2)
-		if((salida & listaBoletos.isEmpty()) || (salida & !lineaAux.getLinea().equals(linea.getLinea())) || (salida & lineaAux.getLinea().equals(linea.getLinea()) & ((LectorTren) lectorAux).isSalida())){
+		if((salida) || (salida & !lineaAux.getLinea().equals(linea.getLinea())) || (salida & lineaAux.getLinea().equals(linea.getLinea()) & ((LectorTren) lectorAux).isSalida())){
 			if(tarjeta.getUsuario()!=null){
 				usuario = uabm.traerUsuarioYBeneficio(tarjeta.getUsuario().getIdUsuario());
 				if(usuario.getBeneficio() instanceof TarifaSocial) {
@@ -177,17 +301,12 @@ public class LectorTren extends Lector{
 					montoConDescuentos=((TarifaSocial) usuario.getBeneficio()).getPorcentajeDescuento()*monto;
 				}
 			}
-
-			//Control de saldo minimo
-			SaldoMinimoABM smabm = SaldoMinimoABM.getInstanciaSaldoMinimoABM();
-			SaldoMinimo saldoMinimo = smabm.traer(1);
 			if((tarjeta.getSaldo()-montoConDescuentos)<saldoMinimo.getSaldoMinimo())throw new Exception("Saldo insuficiente");
 
 			tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
 			tarjeta.setNivelRS(1);
 			tarjeta.setSaldo(tarjeta.getSaldo()-montoConDescuentos);
 			bABM.agregar(tarjeta,this, monto, montoConDescuentos, fechaHoraBoleto);
-			TarjetaABM tABM = TarjetaABM.getInstanciaTarjetaABM();
 			tABM.modificar(tarjeta);
 			return true;
 
@@ -206,16 +325,12 @@ public class LectorTren extends Lector{
 				}
 			}
 
-			//Control de saldo minimo
-			SaldoMinimoABM smabm = SaldoMinimoABM.getInstanciaSaldoMinimoABM();
-			SaldoMinimo saldoMinimo = smabm.traer(1);
 			if((tarjeta.getSaldo()-montoConDescuentos)<saldoMinimo.getSaldoMinimo())throw new Exception("Saldo insuficiente");
 
 			tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
 			tarjeta.setNivelRS(0);
 			tarjeta.setSaldo(tarjeta.getSaldo()-montoConDescuentos);
 			bABM.agregar(tarjeta,this, monto, montoConDescuentos, fechaHoraBoleto);
-			TarjetaABM tABM = TarjetaABM.getInstanciaTarjetaABM();
 			tABM.modificar(tarjeta);
 			return true;
 		}
@@ -299,7 +414,6 @@ public class LectorTren extends Lector{
 			tarjeta.setNivelRS(nivelRS);
 			tarjeta.setSaldo(tarjeta.getSaldo()+montoConDescuentos);
 			bABM.agregar(tarjeta,this, devolucion, devolucionConDescuentos, fechaHoraBoleto);
-			TarjetaABM tABM = TarjetaABM.getInstanciaTarjetaABM();
 			tABM.modificar(tarjeta);
 			return true;
 		}
@@ -311,10 +425,10 @@ public class LectorTren extends Lector{
 
 
 }
-
+*/
 @Override
 public String toString() {
-	return "LectorTren [idLectorTren=" + getIdLector() + ", salida=" + salida + ", estacion=" + "]";
+	return "LectorTren [idLectorTren=" + getIdLector() + ", salida=" + salida + "]";
 }
 
 

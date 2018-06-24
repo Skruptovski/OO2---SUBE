@@ -2,6 +2,7 @@ package test;
 
 import java.util.GregorianCalendar;
 
+import datos.Usuario;
 import negocio.TarjetaABM;
 import negocio.UsuarioABM;
 
@@ -14,7 +15,15 @@ public class TestAgregarTarjeta {
 		GregorianCalendar inicioRS = new GregorianCalendar();
 		TarjetaABM abm = TarjetaABM.getInstanciaTarjetaABM();
 		UsuarioABM uabm = UsuarioABM.getInstanciaUsuarioABM();
-		abm.agregar(saldo, nivelRS,inicioRS, baja,uabm.traerI(1));
+		Usuario usuario = uabm.traerI(1);
+		abm.agregar(saldo, nivelRS,inicioRS, baja,null);
+		System.out.println("Cargado Exitosamente");
+		abm.agregar(saldo, nivelRS,inicioRS, baja,usuario);
+		System.out.println("Cargado Exitosamente");
+		usuario = uabm.traerI(2);
+		abm.agregar(saldo, nivelRS,inicioRS, baja,usuario);
+		System.out.println("Cargado Exitosamente");
+		abm.agregar(saldo, nivelRS,inicioRS, true,null);
 		System.out.println("Cargado Exitosamente");
 	}
 }

@@ -10,7 +10,7 @@ public class TestCrearBoletoTren {
 		LectorTrenABM labm = LectorTrenABM.getInstanciaLectorTrenABM();
 		TarjetaABM tabm = TarjetaABM.getInstanciaTarjetaABM();
 		Tarjeta tarjeta = tabm.traer(1);	
-		LectorTren lector = labm.traer(5);
+		LectorTren lector = labm.traer(10);
 		System.out.println(lector);
 		lector.crearBoleto(tarjeta);
 
