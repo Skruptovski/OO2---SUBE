@@ -28,7 +28,8 @@ public class testTraerBoletosDeTarjeta {
 		Lector lectorAux = boletoCompleto.getLector();
 		
 		Tarjeta tarjeta = tABM.traer(2);
-		tarjeta.darBaja();
+		tarjeta.setSaldo(5);
+		tarjeta.setBaja(false);
 		tABM.modificar(tarjeta);
 
 	}

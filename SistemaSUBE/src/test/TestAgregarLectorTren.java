@@ -16,8 +16,8 @@ public class TestAgregarLectorTren {
 	Linea linea = LineaABM.getInstanciaLineaABM().traer(1);
 	LectorTrenABM abm= LectorTrenABM.getInstanciaLectorTrenABM();
 	EstacionABM eabm = EstacionABM.getInstanciaEstacionABM();
-	Estacion estacion = eabm.traer(1);
-	abm.agregar(linea, saldoMinimo, false, estacion);
+	Estacion estacion = eabm.traer(2);
+	abm.agregar(linea, saldoMinimo, true, estacion);
 	System.out.println("Cargado Exitosamente");
 	}
 }

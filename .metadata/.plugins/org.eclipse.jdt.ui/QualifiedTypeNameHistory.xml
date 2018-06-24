@@ -24,4 +24,5 @@
 <fullyQualifiedTypeName name="datos.Estacion"/>
 <fullyQualifiedTypeName name="datos.SeccionTren"/>
 <fullyQualifiedTypeName name="negocio.LectorTrenABM"/>
+<fullyQualifiedTypeName name="datos.LectorTren"/>
 </qualifiedTypeNameHistroy>
