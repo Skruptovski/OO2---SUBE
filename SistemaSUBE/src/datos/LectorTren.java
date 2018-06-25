@@ -102,6 +102,7 @@ public class LectorTren extends Lector{
 		int minActual=Funciones.traerMinutos(fechaHoraBoleto);
 		int segActual=Funciones.traerSegundos(fechaHoraBoleto);
 		segsTotales = (horaActual*3600+minActual*60+segActual)-(horaIni*3600+minIni*60+segIni);
+		boolean esRS=false;
 		boolean casoLindo=false;
 
 		if(!listaBoletos.isEmpty()){
@@ -194,7 +195,7 @@ public class LectorTren extends Lector{
 		montoConDescuentos=montoConDescuentosSinRS*multiplicador;
 		tarjeta.setInicioRS(fechaHoraInicioRSTarjeta);
 		tarjeta.setNivelRS(nivelRS);
-		if(casoLindo) {/*
+		if(casoLindo) {
 			//Calculador de monto segun seccion
 			EstacionABM estABM = EstacionABM.getInstanciaEstacionABM();
 			TramoTrenABM tramoTrenABM = TramoTrenABM.getInstanciaTramoTrenABM();
@@ -211,15 +212,36 @@ public class LectorTren extends Lector{
 			long idTramoTren = tramoTren.getIdTramoTren();
 			SeccionTren seccionTren = tramoTrenABM.traerTramoYSeccion(idTramoTren).getSeccionTren();
 			double montoReal = seccionTren.getPrecio();
-			double montoRealConDescuentos=0;
+			System.out.println(montoReal);
+			double montoRealConDescuentos=montoReal;
+			double montoRealConDescuentosSinRS=montoReal;
+			
+			if(tarjeta.getUsuario()!=null){
+				usuario = uabm.traerUsuarioYBeneficio(tarjeta.getUsuario().getIdUsuario());
+				if(usuario.getBeneficio() instanceof TarifaSocial) {
+
+					montoRealConDescuentos=((TarifaSocial) usuario.getBeneficio()).getPorcentajeDescuento()*montoReal;
+					montoRealConDescuentosSinRS=montoConDescuentos;
+				}
+			}
+			if(esRS){
+				montoRealConDescuentos=montoRealConDescuentosSinRS*multiplicador;
+			}
+			
 			double montoAnterior = boletoAux.getMonto();
 			double montoConDescuentosAnterior = boletoAux.getMontoConDescuentos();
 			double devolucion=montoAnterior-montoReal;
-			ESTO LO TERMINO EN CASA*/
+			double devolucionConDescuentos=montoConDescuentosAnterior-montoRealConDescuentos;
+			
+			tarjeta.setSaldo(tarjeta.getSaldo()+devolucionConDescuentos);
+			bABM.agregar(tarjeta,this, devolucion*(-1), devolucionConDescuentos*(-1), fechaHoraBoleto);
+			tABM.modificar(tarjeta);
 		}
-		tarjeta.setSaldo(tarjeta.getSaldo()-montoConDescuentos);
-		bABM.agregar(tarjeta,this, monto, montoConDescuentos, fechaHoraBoleto);
-		tABM.modificar(tarjeta);
+		else{
+			tarjeta.setSaldo(tarjeta.getSaldo()-montoConDescuentos);
+			bABM.agregar(tarjeta,this, monto, montoConDescuentos, fechaHoraBoleto);
+			tABM.modificar(tarjeta);
+		}
 		return true;
 	}
 

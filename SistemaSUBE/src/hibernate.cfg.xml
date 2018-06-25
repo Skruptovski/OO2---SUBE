@@ -6,7 +6,7 @@
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost/sistemasube</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">root</property>
+		<property name="connection.password">fenixgroxx07</property>
 		<property name="connection.pool_size">1</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="show_sql">false</property>
@@ -15,6 +15,7 @@
 		<mapping resource="mapeo/Beneficio.hbm.xml"/>
 		<mapping resource="mapeo/Tarjeta.hbm.xml"/>
 		<mapping resource="mapeo/Boleto.hbm.xml"/>
+		<mapping resource="mapeo/BotonColectivo.hbm.xml"/>
 		<mapping resource="mapeo/Lector.hbm.xml"/>
 		<mapping resource="mapeo/Linea.hbm.xml"/>
 		<mapping resource="mapeo/SaldoMinimo.hbm.xml"/>	
@@ -34,7 +35,7 @@
 		<mapping resource="mapeo/Lector.hbm.xml"/>				x
 		<mapping resource="mapeo/Linea.hbm.xml"/>				x
 		<mapping resource="mapeo/SaldoMinimo.hbm.xml"/>			x
-		<mapping resource="mapeo/BotonColectivo.hbm.xml"/>		-
+		<mapping resource="mapeo/BotonColectivo.hbm.xml"/>		x
 		<mapping resource="mapeo/SeccionTren.hbm.xml"/>			x
 		<mapping resource="mapeo/Tarjeta.hbm.xml"/>				x
 		<mapping resource="mapeo/TramoTren.hbm.xml"/>			x

@@ -9,8 +9,8 @@ public class TestCrearBoletoTren {
 	public static void main(String[] args) throws Exception {
 		LectorTrenABM labm = LectorTrenABM.getInstanciaLectorTrenABM();
 		TarjetaABM tabm = TarjetaABM.getInstanciaTarjetaABM();
-		Tarjeta tarjeta = tabm.traer(1);	
-		LectorTren lector = labm.traer(10);
+		Tarjeta tarjeta = tabm.traer(4);	
+		LectorTren lector = labm.traer(32);
 		System.out.println(lector);
 		lector.crearBoleto(tarjeta);
 

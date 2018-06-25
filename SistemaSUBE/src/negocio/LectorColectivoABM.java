@@ -5,6 +5,7 @@ import java.util.Set;
 import dao.LectorColectivoDao;
 import datos.BotonColectivo;
 import datos.LectorColectivo;
+import datos.LectorSubte;
 import datos.Linea;
 import datos.SaldoMinimo;
 

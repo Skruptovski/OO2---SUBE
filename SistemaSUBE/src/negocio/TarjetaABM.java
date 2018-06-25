@@ -17,10 +17,9 @@ public class TarjetaABM {
 		return instanciaTarjetaABM ;
 		}
 	
-	public Tarjeta traer( long id)throws Exception{
+	public Tarjeta traer( long id){
 		Tarjeta c= dao .traer(id);
-		if(c==null) throw new Exception("La Tarjeta con esa ID no existe");
-		else return c;
+		return c;
 	}
 
 	public int agregar(double saldo, int nivelRS,GregorianCalendar inicioRS, boolean baja,Usuario usuario){

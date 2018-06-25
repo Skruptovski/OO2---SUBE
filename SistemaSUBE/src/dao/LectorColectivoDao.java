@@ -75,6 +75,7 @@ public class LectorColectivoDao {
 		try {
 			iniciaOperacion();
 			objeto = (LectorColectivo) session .get(LectorColectivo. class , id);
+			System.out.println("***********");
 		} finally {
 			session .close();
 		}
