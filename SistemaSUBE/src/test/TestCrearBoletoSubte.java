@@ -1,10 +1,10 @@
 package test;
 
-import datos.Lector;
+import java.util.List;
+
+import datos.Boleto;
 import datos.LectorSubte;
 import datos.Tarjeta;
-import negocio.BoletoABM;
-import negocio.LectorABM;
 import negocio.LectorSubteABM;
 import negocio.TarjetaABM;
 
@@ -13,9 +13,12 @@ public class TestCrearBoletoSubte {
 		LectorSubteABM labm = LectorSubteABM.getInstanciaLectorSubteABM();
 		TarjetaABM tabm = TarjetaABM.getInstanciaTarjetaABM();
 		Tarjeta tarjeta = tabm.traer(2);	
-		LectorSubte lector = labm.traer(7);
+		LectorSubte lector = labm.traer(8);
 		System.out.println(lector);
 		lector.crearBoleto(tarjeta);
+		List<Boleto> lista= tabm.traerBoletosDeTarjeta(tarjeta.getIdTarjeta());
+		Boleto boletoAux = lista.get(lista.size()-1);
+		System.out.println(boletoAux);
 
 	}
 

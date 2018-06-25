@@ -137,7 +137,11 @@ public class LectorColectivo extends Lector {
 		}
 		if(tarjeta.getUsuario()!=null){
 			usuario = uabm.traerUsuarioYBeneficio(tarjeta.getUsuario().getIdUsuario());
-			if(usuario.getBeneficio() instanceof TarifaSocial) {
+			Beneficio beneficio = null;		
+			if(usuario!=null){
+				beneficio = usuario.getBeneficio();	
+			}
+			if(beneficio instanceof TarifaSocial) {
 
 				montoConDescuentos=((TarifaSocial) usuario.getBeneficio()).getPorcentajeDescuento()*monto;
 			}

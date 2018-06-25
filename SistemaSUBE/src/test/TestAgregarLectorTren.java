@@ -4,10 +4,8 @@ import datos.Estacion;
 import datos.Linea;
 import datos.SaldoMinimo;
 import negocio.EstacionABM;
-import negocio.LectorSubteABM;
 import negocio.LectorTrenABM;
 import negocio.LineaABM;
-import negocio.PrecioSubteABM;
 import negocio.SaldoMinimoABM;
 
 public class TestAgregarLectorTren {

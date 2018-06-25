@@ -1,6 +1,5 @@
 package test;
 
-import negocio.EstacionABM;
 import negocio.SeccionTrenABM;
 
 public class TestAgregarSeccionTren {

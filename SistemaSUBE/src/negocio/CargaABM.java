@@ -24,8 +24,8 @@ public class CargaABM {
 		else return c;
 	}
 
-	public int agregar(Tarjeta tarjeta, Boleteria boleteria, GregorianCalendar fechaHoraCarga, double monto){
-		Carga c= new Carga(tarjeta, boleteria, fechaHoraCarga, monto);
+	public int agregar(Tarjeta tarjeta, Boleteria boleteria, GregorianCalendar fechaHoraCarga, double monto, boolean boletoEstudiantil){
+		Carga c= new Carga(tarjeta, boleteria, fechaHoraCarga, monto, boletoEstudiantil);
 			return dao .agregar(c);
 	}
 	

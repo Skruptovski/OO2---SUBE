@@ -2,21 +2,26 @@ package datos;
 
 import java.util.*;
 
+import negocio.Funciones;
+
 public class Carga {
 	private long idCarga;
 	private Tarjeta tarjeta;
 	private Boleteria boleteria;
 	private GregorianCalendar fechaHoraCarga;
 	private double monto;
+	private boolean boletoEstudiantil;
 	
 	public Carga (){}
 
-	public Carga(Tarjeta tarjeta, Boleteria boleteria, GregorianCalendar fechaHoraCarga, double monto) {
+	public Carga(Tarjeta tarjeta, Boleteria boleteria, GregorianCalendar fechaHoraCarga, double monto,
+			boolean boletoEstudiantil) {
 		super();
 		this.tarjeta = tarjeta;
 		this.boleteria = boleteria;
 		this.fechaHoraCarga = fechaHoraCarga;
 		this.monto = monto;
+		this.boletoEstudiantil = boletoEstudiantil;
 	}
 
 	public long getIdCarga() {
@@ -59,15 +64,18 @@ public class Carga {
 		this.monto = monto;
 	}
 
-	@Override
-	public String toString() {
-		return "Carga [idCarga=" + idCarga + ", tarjeta=" + tarjeta + ", fechaHoraCarga=" + fechaHoraCarga + ", monto="
-				+ monto + "]";
+	public boolean isBoletoEstudiantil() {
+		return boletoEstudiantil;
 	}
 
-	
-	
-	
-	
+	public void setBoletoEstudiantil(boolean boletoEstudiantil) {
+		this.boletoEstudiantil = boletoEstudiantil;
+	}
+
+	@Override
+	public String toString() {
+		return "Carga [idCarga=" + idCarga + ", fechaHoraCarga=" + Funciones.traerFechaCortaConHora(fechaHoraCarga) + ", monto=" + monto + "]";
+	}
+
 
 }

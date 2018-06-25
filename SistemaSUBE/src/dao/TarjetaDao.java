@@ -122,5 +122,31 @@ public class TarjetaDao {
 		}
 		return lista;
 	}
-	
+	@SuppressWarnings("unchecked")
+	public List<Carga> traerCargasBEDeTarjeta( long id) throws HibernateException {
+		List<Carga> objeto = null ;
+		try {
+			iniciaOperacion();
+			String hql= "from Carga c where c.tarjeta =" +id+" and boletoEstudiantil = 1";
+			objeto= session .createQuery(hql).list();
+		}
+		finally {
+			session .close();
+		}
+		return objeto;
+
+	}
+	public List<Carga> traerCargasDeTarjeta( long id) throws HibernateException {
+		List<Carga> objeto = null ;
+		try {
+			iniciaOperacion();
+			String hql= "from Carga c where c.tarjeta =" +id;
+			objeto= session .createQuery(hql).list();
+		}
+		finally {
+			session .close();
+		}
+		return objeto;
+
+	}
 }

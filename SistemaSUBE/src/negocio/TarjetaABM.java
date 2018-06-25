@@ -1,8 +1,11 @@
 package negocio;
 import java.util.*;
 
+import org.hibernate.HibernateException;
+
 import dao.TarjetaDao;
 import datos.Boleto;
+import datos.Carga;
 import datos.Tarjeta;
 import datos.Usuario;
 
@@ -43,5 +46,10 @@ public class TarjetaABM {
 	public List<Boleto> traerBoletosDeTarjeta(long id){
 		return dao.traerBoletosDeTarjeta(id);
 	}
-
+	public List<Carga> traerCargasBEDeTarjeta( long id) {
+		return dao.traerCargasBEDeTarjeta(id);
+	}
+	public List<Carga> traerCargasDeTarjeta( long id) {
+		return dao.traerCargasDeTarjeta(id);
+	}
 }

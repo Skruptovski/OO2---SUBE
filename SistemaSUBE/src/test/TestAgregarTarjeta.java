@@ -9,7 +9,6 @@ import negocio.UsuarioABM;
 public class TestAgregarTarjeta {
 	public static void main(String[] args) throws Exception {
 		double saldo = 284.70;
-		boolean redSUBE = false;
 		int nivelRS = 0;
 		boolean baja = false;
 		GregorianCalendar inicioRS = new GregorianCalendar();

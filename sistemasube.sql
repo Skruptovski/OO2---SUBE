@@ -4,7 +4,7 @@ USE `sistemasube`;
 --
 -- Host: 127.0.0.1    Database: sistemasube
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.31-MariaDB
+-- Server version	5.7.18-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -84,7 +84,7 @@ CREATE TABLE `boleto` (
   KEY `fk_boleto_lector1_idx` (`idLector`),
   CONSTRAINT `fk_boleto_lector1` FOREIGN KEY (`idLector`) REFERENCES `lector` (`idLector`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_boleto_tarjeta1` FOREIGN KEY (`idTarjeta`) REFERENCES `tarjeta` (`idTarjeta`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `boleto` (
 
 LOCK TABLES `boleto` WRITE;
 /*!40000 ALTER TABLE `boleto` DISABLE KEYS */;
-INSERT INTO `boleto` VALUES (1,10,4.5,'2018-06-24 11:40:50',2,7),(2,3.25,3.25,'2018-06-24 13:10:05',1,9),(3,6.5,6.5,'2018-06-24 13:38:52',1,9),(4,6.5,6.5,'2018-06-24 13:39:41',1,9),(5,6.5,6.5,'2018-06-24 13:47:38',1,9),(6,6.5,6.5,'2018-06-24 13:48:12',1,9),(7,6.5,6.5,'2018-06-24 13:48:59',1,10),(8,6.5,6.5,'2018-06-24 17:09:21',1,9),(9,6.5,6.5,'2018-06-24 17:10:49',1,10);
+INSERT INTO `boleto` VALUES (1,10,4.5,'2018-06-24 11:40:50',2,7),(2,3.25,3.25,'2018-06-24 13:10:05',1,9),(3,6.5,6.5,'2018-06-24 13:38:52',1,9),(4,6.5,6.5,'2018-06-24 13:39:41',1,9),(5,6.5,6.5,'2018-06-24 13:47:38',1,9),(6,6.5,6.5,'2018-06-24 13:48:12',1,9),(7,6.5,6.5,'2018-06-24 13:48:59',1,10),(8,6.5,6.5,'2018-06-24 17:09:21',1,9),(9,6.5,6.5,'2018-06-24 17:10:49',1,10),(10,6.5,6.5,'2018-06-25 17:19:56',1,32),(11,6.5,2.9250000000000003,'2018-06-25 17:20:26',2,32),(12,6.5,2.9250000000000003,'2018-06-25 17:38:19',2,32),(13,6.5,2.9250000000000003,'2018-06-25 17:38:37',2,32),(14,6.5,2.9250000000000003,'2018-06-25 17:46:26',2,32),(15,6.5,2.9250000000000003,'2018-06-25 17:49:42',2,32),(16,6.5,6.5,'2018-06-25 17:54:41',3,32),(17,6.5,6.5,'2018-06-25 17:55:11',3,32),(18,6.5,6.5,'2018-06-25 17:55:31',3,32),(19,10,10,'2018-06-25 17:57:39',3,7),(20,10,10,'2018-06-25 17:57:55',3,7),(21,10,4.5,'2018-06-25 17:58:11',2,7),(22,10,4.5,'2018-06-25 17:58:35',2,7),(23,10,4.5,'2018-06-25 17:59:53',2,8),(24,6.5,3.25,'2018-06-25 18:00:13',3,32),(25,-1.5,-0.75,'2018-06-25 18:01:13',3,10),(26,10,10,'2018-06-25 18:10:41',1,1),(27,10,10,'2018-06-25 18:11:08',1,2),(28,10,2.5,'2018-06-25 18:11:51',3,2),(29,11,11,'2018-06-25 18:12:07',3,2),(30,11,11,'2018-06-25 18:21:45',3,2),(31,11,5.5,'2018-06-25 18:21:56',3,5),(32,11,2.75,'2018-06-25 18:22:02',3,2);
 /*!40000 ALTER TABLE `boleto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,17 +155,18 @@ DROP TABLE IF EXISTS `carga`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `carga` (
-  `idCarga` int(11) unsigned zerofill NOT NULL,
+  `idCarga` int(11) NOT NULL AUTO_INCREMENT,
   `idTarjeta` int(11) NOT NULL,
   `idBoleteria` int(11) NOT NULL,
   `fechaHoraCarga` datetime NOT NULL,
   `monto` double NOT NULL,
+  `boletoEstudiantil` tinyint(4) NOT NULL,
   PRIMARY KEY (`idCarga`,`idTarjeta`,`idBoleteria`),
   KEY `fk_tarjeta_has_boleteria_boleteria1_idx` (`idBoleteria`),
   KEY `fk_tarjeta_has_boleteria_tarjeta1_idx` (`idTarjeta`),
   CONSTRAINT `fk_tarjeta_has_boleteria_boleteria1` FOREIGN KEY (`idBoleteria`) REFERENCES `boleteria` (`idBoleteria`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_tarjeta_has_boleteria_tarjeta1` FOREIGN KEY (`idTarjeta`) REFERENCES `tarjeta` (`idTarjeta`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,6 +175,7 @@ CREATE TABLE `carga` (
 
 LOCK TABLES `carga` WRITE;
 /*!40000 ALTER TABLE `carga` DISABLE KEYS */;
+INSERT INTO `carga` VALUES (36,5,1,'2018-06-25 20:12:02',300,1),(37,5,1,'2018-06-25 20:12:47',10,0),(38,1,1,'2018-06-25 20:13:07',10,0),(39,2,1,'2018-06-25 20:13:12',10,0);
 /*!40000 ALTER TABLE `carga` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +255,7 @@ CREATE TABLE `lector_boton` (
 
 LOCK TABLES `lector_boton` WRITE;
 /*!40000 ALTER TABLE `lector_boton` DISABLE KEYS */;
-INSERT INTO `lector_boton` VALUES (1,1),(1,2),(1,3),(1,4),(2,1),(2,2),(2,3),(2,4),(3,1),(3,2),(3,3),(3,4),(4,1),(4,2),(4,3),(4,4),(5,1),(5,2),(5,3),(5,4),(6,1),(6,2),(6,3),(6,4);
+INSERT INTO `lector_boton` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(1,2),(2,2),(3,2),(4,2),(5,2),(6,2),(1,3),(2,3),(3,3),(4,3),(5,3),(6,3),(1,4),(2,4),(3,4),(4,4),(5,4),(6,4);
 /*!40000 ALTER TABLE `lector_boton` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,6 +269,7 @@ DROP TABLE IF EXISTS `lectorcolectivo`;
 CREATE TABLE `lectorcolectivo` (
   `idLectorColectivo` int(11) NOT NULL,
   `interno` varchar(45) NOT NULL,
+  `estado` int(11) NOT NULL,
   PRIMARY KEY (`idLectorColectivo`),
   KEY `fk_lectorcolectivo_lector1_idx` (`idLectorColectivo`),
   CONSTRAINT `fk_lectorcolectivo_lector1` FOREIGN KEY (`idLectorColectivo`) REFERENCES `lector` (`idLector`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -279,7 +282,7 @@ CREATE TABLE `lectorcolectivo` (
 
 LOCK TABLES `lectorcolectivo` WRITE;
 /*!40000 ALTER TABLE `lectorcolectivo` DISABLE KEYS */;
-INSERT INTO `lectorcolectivo` VALUES (1,'SV-74-1'),(2,'SV-74-2'),(3,'SV-79-1'),(4,'SV-79-2'),(5,'160-1'),(6,'160-2');
+INSERT INTO `lectorcolectivo` VALUES (1,'SV-74-1',0),(2,'SV-74-2',0),(3,'SV-79-1',0),(4,'SV-79-2',0),(5,'160-1',0),(6,'160-2',0);
 /*!40000 ALTER TABLE `lectorcolectivo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -481,7 +484,7 @@ CREATE TABLE `tarjeta` (
   PRIMARY KEY (`idTarjeta`),
   KEY `fk_tarjeta_usuario1_idx` (`idUsuario`),
   CONSTRAINT `fk_tarjeta_usuario1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -490,7 +493,7 @@ CREATE TABLE `tarjeta` (
 
 LOCK TABLES `tarjeta` WRITE;
 /*!40000 ALTER TABLE `tarjeta` DISABLE KEYS */;
-INSERT INTO `tarjeta` VALUES (1,235.95,1,'2018-06-24 17:10:49',0,NULL),(2,280.2,0,'2018-06-24 11:40:50',0,1),(3,284.7,0,'2018-06-24 11:27:46',0,2),(4,284.7,0,'2018-06-24 11:27:46',1,NULL);
+INSERT INTO `tarjeta` VALUES (1,283.45,1,'2018-06-25 18:11:08',0,NULL),(2,375.07499999999993,1,'2018-06-25 17:59:53',0,1),(3,229.95,3,'2018-06-25 18:21:45',0,2),(4,284.7,0,'2018-06-24 11:27:46',1,NULL),(5,3927,0,'2018-06-24 11:27:46',0,3);
 /*!40000 ALTER TABLE `tarjeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -542,7 +545,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`idUsuario`),
   KEY `fk_usuario_beneficio1_idx` (`idBeneficio`),
   CONSTRAINT `fk_usuario_beneficio1` FOREIGN KEY (`idBeneficio`) REFERENCES `beneficio` (`idBeneficio`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -551,7 +554,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Saave','Darío',33311111,1),(2,'Rios','Leandro',10555777,NULL);
+INSERT INTO `usuario` VALUES (1,'Saave','Darío',33311111,1),(2,'Rios','Leandro',10555777,NULL),(3,'Lionel','Messi',27777777,2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -564,4 +567,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-24 17:26:16
+-- Dump completed on 2018-06-25 20:19:06

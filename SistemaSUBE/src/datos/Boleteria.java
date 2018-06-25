@@ -1,6 +1,13 @@
 package datos;
 
+import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Set;
+
+import negocio.CargaABM;
+import negocio.Funciones;
+import negocio.TarjetaABM;
+import negocio.UsuarioABM;
 
 public class Boleteria {
 	private long idBoleteria;
@@ -37,7 +44,57 @@ public class Boleteria {
 	public void setCargas(Set<Carga> cargas) {
 		this.cargas = cargas;
 	}
+	
+	public void cargarSaldo(Tarjeta tarjeta, double monto) throws Exception{
+		if (tarjeta.isBaja())throw new Exception("La tarjeta fue dada de baja");
+		UsuarioABM uabm = UsuarioABM.getInstanciaUsuarioABM();
+		Usuario usuario = null;
+		int diaBoletoEstudiantil = 5;
+		boolean boletoEstudiantil=false;
+		CargaABM cabm = CargaABM.getInstanciaCargaABM();
+		TarjetaABM tabm = TarjetaABM.getInstanciaTarjetaABM();
+		GregorianCalendar fechaHoraCarga = new GregorianCalendar();
+		Carga cargaAux = null;
+		Beneficio beneficio = null;	
+		List<Carga> cargas = tabm.traerCargasBEDeTarjeta(tarjeta.getIdTarjeta());
+		if(!cargas.isEmpty()){
+			cargaAux = cargas.get(cargas.size()-1);
+		}
+		if(tarjeta.getUsuario()!=null){
+			usuario = uabm.traerUsuarioYBeneficio(tarjeta.getUsuario().getIdUsuario());
+			if(usuario!=null){
+				beneficio = usuario.getBeneficio();	
+			}
+		}
+		if(monto<0) {
 
+			if(beneficio instanceof BoletoEstudiantil){
+				int fechaMesAux = 0;
+				int fechaDiaAux = 0;
+				if(cargaAux!=null){
+					fechaMesAux = Funciones.traerNumeroMes(cargaAux.getFechaHoraCarga());
+					fechaDiaAux = Funciones.traerNumeroDiaMes(cargaAux.getFechaHoraCarga());
+				}
+				if(fechaMesAux<=Funciones.traerNumeroMes(fechaHoraCarga)){
+					if(fechaDiaAux<diaBoletoEstudiantil){
+						monto=300;
+						boletoEstudiantil=true;
+					}else{
+						throw new Exception("Aun no puedes solicitar el boleto estudiantil");
+					}
+				}else{
+					throw new Exception("Aun no puedes solicitar el boleto estudiantil");
+				}
+			}else{
+				throw new Exception("No eres beneficiario de Boleto Estudiantil");	
+			}
+		}
+
+		cabm.agregar(tarjeta, this, fechaHoraCarga, monto, boletoEstudiantil);
+		double saldoNuevo = tarjeta.getSaldo()+monto;
+		tarjeta.setSaldo(saldoNuevo);
+		tabm.modificar(tarjeta);
+	}
 	@Override
 	public String toString() {
 		return "Boleteria [idBoleteria=" + idBoleteria + ", boleteria=" + boleteria + "]";
