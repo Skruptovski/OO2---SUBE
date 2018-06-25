@@ -14,13 +14,9 @@ public class TestCrearBoletoColectivo {
 			TarjetaABM tabm = TarjetaABM.getInstanciaTarjetaABM();
 			Tarjeta tarjeta = tabm.traer(1);	
 			LectorColectivo lector = new LectorColectivo();
-			System.out.println("***********");
 			lector=labm.traer(1);
-			
 			lector.setEstado(1); //1=10; 2=10.5; 3=10.75; 4=11//
-		
 			System.out.println(lector);
-			
 			lector.crearBoleto(tarjeta);
 
 	}
