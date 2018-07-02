@@ -31,9 +31,9 @@ public class ControladorMostrarTarjeta extends HttpServlet {
 		try {
 			int idTarjeta = Integer . parseInt ( request . getParameter ( "IdTarjeta" ));
 			TarjetaABM tarjetaAbm = TarjetaABM.getInstanciaTarjetaABM();
-			Tarjeta tarjeta = tarjetaAbm . traer ( idTarjeta );
+			Tarjeta tarjeta = tarjetaAbm . traer( idTarjeta );
 			session.setAttribute("Tarjeta", tarjeta);
-			request.getRequestDispatcher("/Tarjeta.jsp").forward(request, response);
+			request.getRequestDispatcher("tarjeta.jsp").forward(request, response);
 			}
 			catch (Exception e) {
 			response.sendError(500, "El ID de Tarjeta ingresado no existe en la base de datos." );

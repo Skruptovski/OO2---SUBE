@@ -29,7 +29,7 @@ public class TarjetaABM {
 		Tarjeta c= new Tarjeta(saldo,nivelRS,inicioRS,baja,usuario);
 			return dao .agregar(c);
 	}
-	
+
 	public void modificar(Tarjeta c){
 		dao .actualizar(c);
 	}
@@ -51,5 +51,8 @@ public class TarjetaABM {
 	}
 	public List<Carga> traerCargasDeTarjeta( long id) {
 		return dao.traerCargasDeTarjeta(id);
+	}
+	public Tarjeta traerTarjetaYUsuario(long id) {
+		return dao.traerTarjetaYUsuario(id);
 	}
 }

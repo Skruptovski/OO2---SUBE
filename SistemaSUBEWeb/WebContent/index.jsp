@@ -7,16 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<FORM method="POST" action=" /SistemaSUBEweb/MostrarTarjeta ">
-			<TR>
+	<FORM method="POST" action="/SistemaSUBEWeb/tarjeta.jsp">
+		<TR>
 			<TABLE border="2">
 				<TD><INPUT type="submit" value="Mostrar Datos de Tarjeta"></TD>
-			</TR>
-		</TABLE>
-		<BR><BR>
+				</TR>
+			</TABLE>
+			<BR>
+			<BR>
 	</FORM>
 
-	<FORM method="POST" action=" /SistemaSUBEweb/CargarSaldo ">
+	<FORM method="POST" action=" /SistemaSUBEWeb/CargarSaldo ">
 			<TR>
 				<TABLE border="2">
 				<TD><INPUT type="submit" value="Cargar Saldo"></TD>
@@ -25,7 +26,7 @@
 		<BR><BR>
 	</FORM>
 
-	<FORM method="POST" action=" /SistemaSUBEweb/GenerarBoleto ">
+	<FORM method="POST" action=" /SistemaSUBEWeb/GenerarBoleto ">
 			<TR>
 			<TABLE border="2">
 				<TD><INPUT type="submit" value="Generar Boleto"></TD>

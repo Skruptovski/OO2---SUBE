@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 </head>
 <BODY>
-	<FORM method="POST" action=" /SistemaSUBEweb/MostrarTarjeta ">
+
+	<FORM method="POST" action="/SistemaSUBEWeb/MostrarTarjeta">
 		Búsqueda de Tarjetas <BR><BR>
 		<TABLE border="0">
 			<TR>
@@ -22,9 +23,11 @@
 			</TR>
 		</TABLE>
 	</FORM>
+	
 	<% if(tarjeta!=null){%>
 	<strong>Su saldo es: </strong>
-	<%tarjeta.getSaldo();
+	<%out.println(tarjeta.getSaldo());
+	//out.println(tarjeta.getUsuario());
 	}%>
 </BODY>
 </html>

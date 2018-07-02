@@ -5,7 +5,7 @@ import java.util.*;
 import negocio.Funciones;
 
 public class Tarjeta {
-	
+
 	private long idTarjeta;
 	private double saldo=0;
 	private int nivelRS;

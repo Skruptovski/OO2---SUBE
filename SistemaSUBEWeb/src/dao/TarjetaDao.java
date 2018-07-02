@@ -12,7 +12,7 @@ public class TarjetaDao {
 	private static Session session ;
 	private Transaction tx ;
 	private static TarjetaDao instanciaTarjetaDao;
-	
+
 	public static TarjetaDao getInstanciaTarjetaDao() {
 		if ( instanciaTarjetaDao == null ) {
 			instanciaTarjetaDao = new TarjetaDao();
@@ -148,5 +148,16 @@ public class TarjetaDao {
 		}
 		return objeto;
 
+	}
+	public Tarjeta traerTarjetaYUsuario(long id){
+		Tarjeta objeto = null;
+		try{
+			iniciaOperacion();
+			String hql = "from Tarjeta c inner join fetch c.usuario where c.idTarjeta ="+id;
+			objeto = (Tarjeta) session.createQuery(hql).uniqueResult();
+		} finally {
+			session.close();
+		}
+		return objeto;
 	}
 }
