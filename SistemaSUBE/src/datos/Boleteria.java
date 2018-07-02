@@ -56,9 +56,24 @@ public class Boleteria {
 		GregorianCalendar fechaHoraCarga = new GregorianCalendar();
 		Carga cargaAux = null;
 		Beneficio beneficio = null;	
-		List<Carga> cargas = tabm.traerCargasBEDeTarjeta(tarjeta.getIdTarjeta());
+		List<Carga> cargas = tabm.traerCargasDeTarjeta(tarjeta.getIdTarjeta());
+		int fechaMesAux = 0;
+		int fechaDiaAux = 0;
 		if(!cargas.isEmpty()){
 			cargaAux = cargas.get(cargas.size()-1);
+			if(cargaAux!=null){
+				fechaMesAux = Funciones.traerNumeroMes(cargaAux.getFechaHoraCarga());
+				fechaDiaAux = Funciones.traerNumeroDiaMes(cargaAux.getFechaHoraCarga());
+			}
+			if(fechaMesAux<Funciones.traerNumeroMes(fechaHoraCarga)){
+				if(fechaDiaAux>=diaBoletoEstudiantil){
+					cargaAux.setBoletoEstudiantil(false);
+					cabm.modificar(cargaAux);
+				}
+			}else{
+				cargaAux.setBoletoEstudiantil(false);
+				cabm.modificar(cargaAux);
+			}
 		}
 		if(tarjeta.getUsuario()!=null){
 			usuario = uabm.traerUsuarioYBeneficio(tarjeta.getUsuario().getIdUsuario());
@@ -67,29 +82,29 @@ public class Boleteria {
 			}
 		}
 		if(monto<0) {
-
-			if(beneficio instanceof BoletoEstudiantil){
-				int fechaMesAux = 0;
-				int fechaDiaAux = 0;
-				if(cargaAux!=null){
-					fechaMesAux = Funciones.traerNumeroMes(cargaAux.getFechaHoraCarga());
-					fechaDiaAux = Funciones.traerNumeroDiaMes(cargaAux.getFechaHoraCarga());
-				}
-				if(fechaMesAux<=Funciones.traerNumeroMes(fechaHoraCarga)){
-					if(fechaDiaAux<diaBoletoEstudiantil){
-						monto=300;
-						boletoEstudiantil=true;
+		
+			if(cargaAux==null){
+				cargaAux= new Carga(null,null, null, 0, true);
+			}
+			if(cargaAux.isBoletoEstudiantil()){
+				if(beneficio instanceof BoletoEstudiantil){
+					if(fechaMesAux<=Funciones.traerNumeroMes(fechaHoraCarga)){
+						if(fechaDiaAux<diaBoletoEstudiantil){
+							monto=300;
+							boletoEstudiantil=true;
+						}else{
+							throw new Exception("Aun no puedes solicitar el boleto estudiantil");
+						}
 					}else{
 						throw new Exception("Aun no puedes solicitar el boleto estudiantil");
 					}
 				}else{
-					throw new Exception("Aun no puedes solicitar el boleto estudiantil");
+					throw new Exception("No eres beneficiario de Boleto Estudiantil");	
 				}
 			}else{
-				throw new Exception("No eres beneficiario de Boleto Estudiantil");	
+				throw new Exception("Ya has solicitado tu Boleto Estudiantil este mes");
 			}
 		}
-
 		cabm.agregar(tarjeta, this, fechaHoraCarga, monto, boletoEstudiantil);
 		double saldoNuevo = tarjeta.getSaldo()+monto;
 		tarjeta.setSaldo(saldoNuevo);
