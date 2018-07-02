@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datos.Tarjeta;
+import datos.Usuario;
 import negocio.Funciones;
 import negocio.TarjetaABM;
 
@@ -31,7 +32,10 @@ public class ControladorMostrarTarjeta extends HttpServlet {
 		try {
 			int idTarjeta = Integer . parseInt ( request . getParameter ( "IdTarjeta" ));
 			TarjetaABM tarjetaAbm = TarjetaABM.getInstanciaTarjetaABM();
-			Tarjeta tarjeta = tarjetaAbm . traer( idTarjeta );
+			Tarjeta tarjeta = tarjetaAbm.traerTarjetaYUsuario(idTarjeta);
+			if(tarjeta==null){
+				tarjeta = tarjetaAbm.traer(idTarjeta);
+			}
 			session.setAttribute("Tarjeta", tarjeta);
 			request.getRequestDispatcher("tarjeta.jsp").forward(request, response);
 			}

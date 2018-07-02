@@ -70,7 +70,7 @@ public class Usuario {
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni
-				+ ", getBeneficio()=" + getBeneficio() + "]";
+				+ "]";
 	}
 
 
