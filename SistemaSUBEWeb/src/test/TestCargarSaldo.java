@@ -12,7 +12,7 @@ public class TestCargarSaldo {
 	public static void main(String[] args) throws Exception {
 		BoleteriaABM babm = BoleteriaABM.getInstanciaBoleteriaABM();
 		TarjetaABM tabm = TarjetaABM.getInstanciaTarjetaABM();
-		Tarjeta tarjeta = tabm.traer(2);	
+		Tarjeta tarjeta = tabm.traer(1);	
 		Boleteria boleteria = babm.traer(1);
 		System.out.println(boleteria);
 		//SI MANDAN VALORES NEGATIVOS EN EL MONTO, SE ENTIENDE QUE ESTAN QUERIENDO CARGAR UN BOLETO ESTUDIANTIL

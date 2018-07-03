@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import datos.TarifaSocial;
 import datos.Boleto;
 import datos.BoletoEstudiantil;
+import datos.Lector;
 import datos.LectorTren;
 
 public class LectorTrenDao {
@@ -94,4 +95,15 @@ public class LectorTrenDao {
 		return lista;
 	}
 	
+	public LectorTren traerLectorYEstacion(long id){
+		LectorTren objeto = null;
+		try{
+			iniciaOperacion();
+			String hql = "from LectorTren c inner join fetch c.estacion where c.idLector ="+id;
+			objeto = (LectorTren) session.createQuery(hql).uniqueResult();
+		} finally {
+			session.close();
+		}
+		return objeto;
+	}
 }

@@ -74,7 +74,7 @@ public class Carga {
 
 	@Override
 	public String toString() {
-		return "Carga [idCarga=" + idCarga + ", fechaHoraCarga=" + Funciones.traerFechaCortaConHora(fechaHoraCarga) + ", monto=" + monto + "]";
+		return "Carga [idCarga=" + idCarga + ", fechaHoraCarga=" + Funciones.traerFechaCortaConHora(fechaHoraCarga) + ", monto=" + monto + "]<BR>";
 	}
 
 

@@ -22,4 +22,60 @@
 		<servlet-name>ControladorMostrarTarjeta</servlet-name>
 		<url-pattern>/MostrarTarjeta</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ControladorCargarSaldo</servlet-name>
+		<servlet-class>controladores.ControladorCargarSaldo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorCargarSaldo</servlet-name>
+		<url-pattern>/CargarSaldo</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>ControladorGenerarBoletoSubte</servlet-name>
+		<servlet-class>controladores.ControladorGenerarBoletoSubte</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorGenerarBoletoSubte</servlet-name>
+		<url-pattern>/GenerarBoletoS</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorGenerarBoletoColectivo</servlet-name>
+		<servlet-class>controladores.ControladorGenerarBoletoColectivo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorGenerarBoletoColectivo</servlet-name>
+		<url-pattern>/GenerarBoletoC</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorGenerarBoletoTren</servlet-name>
+		<servlet-class>controladores.ControladorGenerarBoletoTren</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorGenerarBoletoTren</servlet-name>
+		<url-pattern>/GenerarBoletoT</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorReportes</servlet-name>
+		<servlet-class>controladores.ControladorReportes</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorReportes</servlet-name>
+		<url-pattern>/reportes</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ControladorEstadistica</servlet-name>
+		<servlet-class>controladores.ControladorEstadistica</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorEstadistica</servlet-name>
+		<url-pattern>/MostrarEstadistica</url-pattern>
+	</servlet-mapping>
+	
+
 </web-app>

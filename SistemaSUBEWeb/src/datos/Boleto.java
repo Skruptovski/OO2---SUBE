@@ -71,7 +71,7 @@ public class Boleto {
 	@Override
 	public String toString() {
 		return "Boleto [idBoleto=" + idBoleto + ", monto=" + monto + ", montoConDescuentos=" + montoConDescuentos
-				+ ", fechaHoraBoleto=" + fechaHoraBoleto.getTime() + "]\n";
+				+ ", fechaHoraBoleto=" + fechaHoraBoleto.getTime() + "]<BR>";
 	}
 
 

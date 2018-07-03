@@ -12,18 +12,45 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Sistema Sube - su tarjeta</title>
+<title>Sistema Sube - Estadisticas</title>
 </head>
 <BODY>
 
 	<FORM method="POST" action="/SistemaSUBEWeb/MostrarTarjeta">
-		Búsqueda de Tarjetas <BR>
+		Estadisticas por fecha <BR>
 		<BR>
 		<TABLE border="0">
 			<TR>
 				<TD>IdTarjeta:</TD>
 				<TD><INPUT name="IdTarjeta"></TD>
 				<BR>
+			</TR>
+			
+			
+			<TR>
+				<TD>diaInicio:</TD>
+				<TD><INPUT name="dI"></TD>
+			</TR>
+			<TR>
+				<TD>mesInicio:</TD>
+				<TD><INPUT name="mI"></TD>
+			</TR>
+			<TR>
+				<TD>anioInicio:</TD>
+				<TD><INPUT name="aI"></TD>
+			</TR>
+			
+			<TR>
+				<TD>diaFin:</TD>
+				<TD><INPUT name="dF"></TD>
+			</TR>
+			<TR>
+				<TD>mesFin:</TD>
+				<TD><INPUT name="mF"></TD>
+			</TR>
+			<TR>
+				<TD>anioFin:</TD>
+				<TD><INPUT name="aF"></TD>
 			</TR>
 			
 			<TR>
@@ -38,7 +65,16 @@
 	List<Boleto> boletos = tabm.traerBoletosDeTarjeta(tarjeta.getIdTarjeta());
 	List<Carga> cargas = tabm.traerCargasDeTarjeta(tarjeta.getIdTarjeta());
 	
+	int dI = Integer . parseInt ( request . getParameter ( "dI" ));
+	int mI = Integer . parseInt ( request . getParameter ( "mI" ));
+	int aI = Integer . parseInt ( request . getParameter ( "aI" ));
 	
+	int dF = Integer . parseInt ( request . getParameter ( "dF" ));
+	int mF = Integer . parseInt ( request . getParameter ( "mF" ));
+	int aF = Integer . parseInt ( request . getParameter ( "aF" ));
+	
+	GregorianCalendar fechaInicial = new GregorianCalendar(aI,mI,dI); 
+	GregorianCalendar fechaFinal = new GregorianCalendar(aF,mF,dF); 
 	
 	out.println(tarjeta.getSaldo());%>
 	<BR>
@@ -46,7 +82,9 @@
 	<BR>
 	<%out.println(boletos);%>
 	<BR>
-	<%out.println(cargas);
+	<%out.println(cargas);%>
+	<BR>
+	<%out.println(tarjeta.estadisticaPorTransporte(fechaInicial, fechaFinal));
 	}%>
 </BODY>
 </html>

@@ -69,7 +69,18 @@ public class LectorSubteDao {
 			session .close();
 		}
 	}
-		
+	
+	public LectorSubte traer( String estacionSubte) throws HibernateException {
+		LectorSubte objeto = null ;
+		try {
+			iniciaOperacion();
+			objeto = (LectorSubte) session .get(LectorSubte. class , estacionSubte);
+		} finally {
+			session .close();
+		}
+		return objeto;
+	}
+	
 	public LectorSubte traer( long id) throws HibernateException {
 		LectorSubte objeto = null ;
 		try {

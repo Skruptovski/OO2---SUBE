@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import datos.Tarjeta;
 import negocio.TarjetaABM;
 
-public class ControladorMostrarTarjeta extends HttpServlet {
+public class ControladorEstadistica extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request , HttpServletResponse response )
 			throws ServletException, IOException {
@@ -34,7 +34,7 @@ public class ControladorMostrarTarjeta extends HttpServlet {
 				tarjeta = tarjetaAbm.traer(idTarjeta);
 			}
 			session.setAttribute("Tarjeta", tarjeta);
-			request.getRequestDispatcher("tarjeta.jsp").forward(request, response);
+			request.getRequestDispatcher("estadistica.jsp").forward(request, response);
 			}
 			catch (Exception e) {
 			response.sendError(500, "El ID de Tarjeta ingresado no existe en la base de datos." );

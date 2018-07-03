@@ -4,6 +4,7 @@ import java.util.Set;
 
 import dao.LectorTrenDao;
 import datos.Estacion;
+import datos.Lector;
 import datos.LectorTren;
 import datos.Linea;
 import datos.SaldoMinimo;
@@ -42,5 +43,7 @@ public class LectorTrenABM {
 	public List<LectorTren> traer(){
 		return dao .traer();
 		}
-
+	public LectorTren traerLectorYEstacion(long id){
+		return dao.traerLectorYEstacion(id);
+	}
 }

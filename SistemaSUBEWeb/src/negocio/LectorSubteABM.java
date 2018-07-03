@@ -1,16 +1,10 @@
 package negocio;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Set;
-
 import dao.LectorSubteDao;
 import datos.LectorSubte;
 import datos.Linea;
 import datos.PrecioSubte;
 import datos.SaldoMinimo;
-import datos.TarifaSocial;
-import datos.Tarjeta;
-import datos.Usuario;
 
 public class LectorSubteABM {
 	private static LectorSubteABM instanciaLectorSubteABM;
@@ -27,6 +21,10 @@ public class LectorSubteABM {
 		LectorSubte c= dao .traer(id);
 		if(c==null) throw new Exception("El LectorSubte con esa ID no existe");
 		else return c;
+	}
+	
+	public LectorSubte traer(String estacionSubte) {
+		return dao.traer(estacionSubte);
 	}
 
 	public int agregar(Linea linea,SaldoMinimo saldoMinimo, String estacionSubte, PrecioSubte precioSubte){
