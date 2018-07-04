@@ -65,7 +65,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ControladorReportes</servlet-name>
-		<url-pattern>/reportes</url-pattern>
+		<url-pattern>/MostrarReportes</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
